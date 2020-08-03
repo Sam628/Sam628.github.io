@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>剑指offer习题一（01-05） | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="剑指offer系列题目01-05，包括  01 二维数组中的查找02 替换空格03 从头到尾打印链表04 重建二叉树05 用两个栈实现队列">
+<meta property="og:type" content="article">
+<meta property="og:title" content="剑指offer习题一（01-05）">
+<meta property="og:url" content="http://yoursite.com/2020/07/18/%E5%89%91%E6%8C%87offer%E4%B9%A0%E9%A2%98%E4%B8%80%EF%BC%881-5%EF%BC%89/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="剑指offer系列题目01-05，包括  01 二维数组中的查找02 替换空格03 从头到尾打印链表04 重建二叉树05 用两个栈实现队列">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2020-07-18T07:42:58.000Z">
+<meta property="article:modified_time" content="2020-07-29T12:36:35.147Z">
+<meta property="article:author" content="Sam Lu">
+<meta property="article:tag" content="java">
+<meta property="article:tag" content="JZ">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 5.0.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-剑指offer习题一（1-5）" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/07/18/%E5%89%91%E6%8C%87offer%E4%B9%A0%E9%A2%98%E4%B8%80%EF%BC%881-5%EF%BC%89/" class="article-date">
+  <time datetime="2020-07-18T07:42:58.000Z" itemprop="datePublished">2020-07-18</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      剑指offer习题一（01-05）
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>剑指offer系列题目01-05，包括</p>
+<blockquote>
+<p>01 二维数组中的查找<br>02 替换空格<br>03 从头到尾打印链表<br>04 重建二叉树<br>05 用两个栈实现队列</p>
+</blockquote>
+<a id="more"></a>
+
+<table>
+<thead>
+<tr>
+<th align="left">题目</th>
+<th align="center">知识点</th>
+<th align="center">心得</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">二维数组中的查找</td>
+<td align="center">数组、查找</td>
+<td align="center">注意起始比较值，while的使用</td>
+</tr>
+<tr>
+<td align="left">替换空格</td>
+<td align="center">字符串</td>
+<td align="center">StringBuilder、str.charAt(i)、str.append、str.toString()</td>
+</tr>
+<tr>
+<td align="left">从头到尾打印链表</td>
+<td align="center">链表</td>
+<td align="center">Stack、stack.push、stack.isEmpty()、list.add(stack.pop())</td>
+</tr>
+<tr>
+<td align="left">重建二叉树</td>
+<td align="center">树</td>
+<td align="center">TreeNode、HashMap、递归</td>
+</tr>
+<tr>
+<td align="left">用两个栈实现队列</td>
+<td align="center">队列、栈</td>
+<td align="center">队列：先进先出、栈：先进后出</td>
+</tr>
+</tbody></table>
+<center>详情解析</center>
+
+<h2 id="JZ01"><a href="#JZ01" class="headerlink" title="JZ01"></a>JZ01</h2><h2 id="JZ02"><a href="#JZ02" class="headerlink" title="JZ02"></a>JZ02</h2><h2 id="JZ03"><a href="#JZ03" class="headerlink" title="JZ03"></a>JZ03</h2><h2 id="JZ04"><a href="#JZ04" class="headerlink" title="JZ04"></a>JZ04</h2><h2 id="JZ05"><a href="#JZ05" class="headerlink" title="JZ05"></a>JZ05</h2>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2020/07/18/%E5%89%91%E6%8C%87offer%E4%B9%A0%E9%A2%98%E4%B8%80%EF%BC%881-5%EF%BC%89/" data-id="ckdeis72e000ylwul4p4f8j0y" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JZ/" rel="tag">JZ</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/" rel="tag">java</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2020/07/20/%E5%89%91%E6%8C%87offer%E4%B9%A0%E9%A2%98%E4%BA%8C%EF%BC%886-10%EF%BC%89/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          剑指offer习题二（06-10）
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2020/07/18/java%E4%BB%A3%E7%A0%81%E5%9F%BA%E7%A1%80%E4%B9%8B%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">java代码基础之输入输出</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/JZ/" rel="tag">JZ</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java/" rel="tag">java</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/job/" rel="tag">job</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%B0%8F%E7%99%BD%E5%9F%BA%E7%A1%80/" rel="tag">小白基础</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%9A%8F%E7%AC%94/" rel="tag">随笔</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/JZ/" style="font-size: 16.67px;">JZ</a> <a href="/tags/java/" style="font-size: 20px;">java</a> <a href="/tags/job/" style="font-size: 13.33px;">job</a> <a href="/tags/%E5%B0%8F%E7%99%BD%E5%9F%BA%E7%A1%80/" style="font-size: 16.67px;">小白基础</a> <a href="/tags/%E9%9A%8F%E7%AC%94/" style="font-size: 10px;">随笔</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/08/">August 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">July 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">June 2020</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2020/08/03/hello-world/">Hello World</a>
+          </li>
+        
+          <li>
+            <a href="/2020/07/29/%E5%89%91%E6%8C%87offer%E4%B9%A0%E9%A2%98%E5%85%AD%EF%BC%8826-30%EF%BC%89/">剑指offer习题六（26-30）</a>
+          </li>
+        
+          <li>
+            <a href="/2020/07/28/%E5%89%91%E6%8C%87offer%E4%B9%A0%E9%A2%98%E4%BA%94%EF%BC%8821-25%EF%BC%89/">剑指offer习题五（21-25）</a>
+          </li>
+        
+          <li>
+            <a href="/2020/07/27/%E5%89%91%E6%8C%87offer%E4%B9%A0%E9%A2%98%E5%9B%9B%EF%BC%8816-20%EF%BC%89/">剑指offer习题四（16-20）</a>
+          </li>
+        
+          <li>
+            <a href="/2020/07/25/%E5%89%91%E6%8C%87offer%E4%B9%A0%E9%A2%98%E4%B8%89%EF%BC%8811-15%EF%BC%89/">剑指offer习题三（11-15）</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2020 Sam Lu<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>

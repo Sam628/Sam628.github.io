@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>java代码基础之输入输出 | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="输入输出：java中主要按照流stream的模式来实现输入输出。对数据流的主要操作都封装在java.io包装中。输入语句，在牛客网上不用写这一部分。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="java代码基础之输入输出">
+<meta property="og:url" content="http://yoursite.com/2020/07/18/java%E4%BB%A3%E7%A0%81%E5%9F%BA%E7%A1%80%E4%B9%8B%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="输入输出：java中主要按照流stream的模式来实现输入输出。对数据流的主要操作都封装在java.io包装中。输入语句，在牛客网上不用写这一部分。">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2020-07-18T01:27:31.000Z">
+<meta property="article:modified_time" content="2020-07-25T11:20:14.752Z">
+<meta property="article:author" content="Sam Lu">
+<meta property="article:tag" content="java">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 5.0.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-java代码基础之输入输出" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/07/18/java%E4%BB%A3%E7%A0%81%E5%9F%BA%E7%A1%80%E4%B9%8B%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA/" class="article-date">
+  <time datetime="2020-07-18T01:27:31.000Z" itemprop="datePublished">2020-07-18</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      java代码基础之输入输出
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <blockquote>
+<p>输入输出：<br>java中主要按照流stream的模式来实现输入输出。对数据流的主要操作都封装在java.io包装中。<br>输入语句，在牛客网上不用写这一部分。</p>
+</blockquote>
+<a id="more"></a>
+
+<blockquote>
+<p>=== 使用Scanner类 ===</p>
+<blockquote>
+<p>(1)使用java.util包。  import java.util.*;<br>(2)构造Scanner类对象，它附属于标准输入流System.in。   Scanner s = new Scanner(System.in);<br>(3)常用的next()方法系列：       nextInt():输入整数    nextLine():输入字符串     nextDouble():输入双精度数     next():输入字符串（以空格作为分隔符）。</p>
+</blockquote>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.*;</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Demo_1</span></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span>&#123;</span><br><span class="line">        Scanner s = <span class="keyword">new</span> Scanner(System.in);</span><br><span class="line">        String name = s.nextLine();</span><br><span class="line">        <span class="keyword">int</span> age = s.nextInt();</span><br><span class="line">        System.out.println(<span class="string">&quot;姓名：&quot;</span>+ name + <span class="string">&quot;年龄：&quot;</span> + age);</span><br><span class="line">        s.close(); <span class="comment">//若没有关闭Scanner对象会报警告</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>=== 使用java.io.BufferedReader和java.io.InputStreamReader ===</p>
+<blockquote>
+<p>(1)使用java.io包。 import java.io.*;<br>(2)构造 BufferedReader类对象，它附属于标准输入流System.in。<br> BufferedReader br = new BufferedReader(new InputStreamReader(System.in));</p>
+</blockquote>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">String str = br.readLine();</span><br><span class="line">System.out.println(str);</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>注意</p>
+<blockquote>
+<p>(1）read方法：读取单个字符。 返回：作为一个整数（其范围从 0 到 65535 (0x00-0xffff)）读入的字符，如果已到达流末尾，则返回 -1 ；<br>(2)readLine方法：读取一个文本行。通过下列字符之一即可认为某行已终止：换行 (‘\n’)、回车 (‘\r’) 或回车后直接跟着换行。 返回：包含该行内容的字符串，不包含任何行终止符，如果已到达流末尾，则返回 null。</p>
+</blockquote>
+</blockquote>
+<blockquote>
+<p>=== 使用java.io.Console ===</p>
+<blockquote>
+<p>创建对象<br>Console console = System.console();</p>
+</blockquote>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">String str = console.readLine(<span class="string">&quot;请输入：&quot;</span>)；</span><br><span class="line">System.out.println(str);</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>输出语句</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">System.out.println(<span class="number">1111</span>);    <span class="comment">//换行打印</span></span><br><span class="line">System.out.print(<span class="number">1111</span>);        <span class="comment">//不换行打印</span></span><br><span class="line">System.out.write(<span class="number">2222</span>);        <span class="comment">//字节输出</span></span><br><span class="line">System.out.printf(<span class="string">&quot;%+8.3f\n&quot;</span>, <span class="number">3.14</span>); <span class="comment">//按格式输出</span></span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2020/07/18/java%E4%BB%A3%E7%A0%81%E5%9F%BA%E7%A1%80%E4%B9%8B%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA/" data-id="ckdeis6yh0000lwulc4wz395f" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/" rel="tag">java</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2020/07/18/%E5%89%91%E6%8C%87offer%E4%B9%A0%E9%A2%98%E4%B8%80%EF%BC%881-5%EF%BC%89/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          剑指offer习题一（01-05）
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2020/07/17/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Lu小白的进阶之路：操作系统</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/JZ/" rel="tag">JZ</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java/" rel="tag">java</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/job/" rel="tag">job</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%B0%8F%E7%99%BD%E5%9F%BA%E7%A1%80/" rel="tag">小白基础</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%9A%8F%E7%AC%94/" rel="tag">随笔</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/JZ/" style="font-size: 16.67px;">JZ</a> <a href="/tags/java/" style="font-size: 20px;">java</a> <a href="/tags/job/" style="font-size: 13.33px;">job</a> <a href="/tags/%E5%B0%8F%E7%99%BD%E5%9F%BA%E7%A1%80/" style="font-size: 16.67px;">小白基础</a> <a href="/tags/%E9%9A%8F%E7%AC%94/" style="font-size: 10px;">随笔</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/08/">August 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">July 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">June 2020</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2020/08/03/hello-world/">Hello World</a>
+          </li>
+        
+          <li>
+            <a href="/2020/07/29/%E5%89%91%E6%8C%87offer%E4%B9%A0%E9%A2%98%E5%85%AD%EF%BC%8826-30%EF%BC%89/">剑指offer习题六（26-30）</a>
+          </li>
+        
+          <li>
+            <a href="/2020/07/28/%E5%89%91%E6%8C%87offer%E4%B9%A0%E9%A2%98%E4%BA%94%EF%BC%8821-25%EF%BC%89/">剑指offer习题五（21-25）</a>
+          </li>
+        
+          <li>
+            <a href="/2020/07/27/%E5%89%91%E6%8C%87offer%E4%B9%A0%E9%A2%98%E5%9B%9B%EF%BC%8816-20%EF%BC%89/">剑指offer习题四（16-20）</a>
+          </li>
+        
+          <li>
+            <a href="/2020/07/25/%E5%89%91%E6%8C%87offer%E4%B9%A0%E9%A2%98%E4%B8%89%EF%BC%8811-15%EF%BC%89/">剑指offer习题三（11-15）</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2020 Sam Lu<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>

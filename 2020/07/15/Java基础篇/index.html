@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>Lu小白的进阶之路：Java基础篇 | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Hello world!Java语言知识、类与对象、类的重用、接口与多态、输入输出、对象群体的组织、图形用界面">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Lu小白的进阶之路：Java基础篇">
+<meta property="og:url" content="http://yoursite.com/2020/07/15/Java%E5%9F%BA%E7%A1%80%E7%AF%87/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="Hello world!Java语言知识、类与对象、类的重用、接口与多态、输入输出、对象群体的组织、图形用界面">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2020-07-15T09:11:43.000Z">
+<meta property="article:modified_time" content="2020-08-01T04:29:42.489Z">
+<meta property="article:author" content="Sam Lu">
+<meta property="article:tag" content="java">
+<meta property="article:tag" content="小白基础">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 5.0.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-Java基础篇" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/07/15/Java%E5%9F%BA%E7%A1%80%E7%AF%87/" class="article-date">
+  <time datetime="2020-07-15T09:11:43.000Z" itemprop="datePublished">2020-07-15</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Lu小白的进阶之路：Java基础篇
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <blockquote>
+<p>Hello world!<br>Java语言知识、类与对象、类的重用、接口与多态、输入输出、对象群体的组织、图形用界面</p>
+</blockquote>
+<a id="more"></a>
+<h2 id="1-Java语言基础知识"><a href="#1-Java语言基础知识" class="headerlink" title="1. Java语言基础知识"></a>1. Java语言基础知识</h2><pre><code>1.  java数据类型（ byte short int long float double char boolean 对象 ）</code></pre>
+<p><strong>(1) 基本数据类型</strong><br>  <em>1.整数类型</em><br>   byte 占1字节（1字节 = 8位）-128 ~ 127<br>   short 占2字节<br>   int 占4字节<br>   long 占8字节<br>  <em>2.浮点类型</em><br>   float 占4字节 1.4e-45 ~ 3.4e+38<br>   double 占8字节 4.9e-324 ~ 1.8e+308<br>  <em>3.字符类型</em>        char ‘’<br>  <em>4.布尔类型</em>        boolean 取值只有true false两种</p>
+<p><strong>(2) 引用类型</strong><br> <em>对象</em><br>  String是一个类，可以直接使用 String str = “hello world”</p>
+<pre><code> 2.  java数组（ 一维数组 多维数组 ）</code></pre>
+<p>声明 int[] a;<br>创建 a = new int[5];<br>分配内存 new为对象分配内存空间<br>使用 a[0] = 1;</p>
+<pre><code> 3.  算法的流程控制</code></pre>
+<p>if - else系列 选择分支结构<br>switch 选择分支结构</p>
+<p>for 循环 （还有一种java专有的for增强版）<br>while 循环<br>do{}while 循环</p>
+<p>break 跳出循环<br>continue 结束本次循环，回到下一轮循环初始位置</p>
+<h2 id="2-类与对象"><a href="#2-类与对象" class="headerlink" title="2. 类与对象"></a>2. 类与对象</h2><pre><code>1 - 面向对象方法的特性 ---- 抽象、封装、继承、多态</code></pre>
+<p>抽象：数据（属性）、方法（行为）<br>封装：隐藏细节，设计者与使用者分开<br>继承：基于已有类产生新类的机制；java仅支持单继承<br>多态：…… 子类对父类方法的覆盖等</p>
+<pre><code>2 - 类与对象基础</code></pre>
+<p>类的声明、对象的创建、数据成员、方法成员、包、类的访问权限控制、类成员的访问控制权限</p>
+<p>i）类是对一类对象的描述；对象是类的具体实例；</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//类声明 、、[]可以没有</span></span><br><span class="line">[<span class="keyword">public</span>][<span class="keyword">abstract</span> | <span class="keyword">final</span>] <span class="class"><span class="keyword">class</span> 类名称 //公有类、抽象类、终结类</span></span><br><span class="line">[extends 父类名称]</span><br><span class="line">[implements 接口名称列表] <span class="comment">//如果声明的类要实现某些接口</span></span><br><span class="line">&#123;</span><br><span class="line"></span><br><span class="line">  数据成员声明及初始化;        <span class="comment">//类变量和实例变量</span></span><br><span class="line">                    [<span class="keyword">public</span> | <span class="keyword">protected</span> | <span class="keyword">private</span>]<span class="comment">//访问控制符</span></span><br><span class="line">                    [<span class="keyword">static</span>][<span class="keyword">final</span>][<span class="keyword">transient</span>][<span class="keyword">volatile</span>]</span><br><span class="line">                    <span class="comment">//静态成员变量（类变量）、变量值不能被修改、变量不需要序列化、共享变量</span></span><br><span class="line">                    数据类型 变量名[=变量初值];</span><br><span class="line">                    </span><br><span class="line">  方法声明及方法体;        <span class="comment">//类的方法和实例方法</span></span><br><span class="line">                    [<span class="keyword">public</span> | <span class="keyword">protected</span> | <span class="keyword">private</span>]</span><br><span class="line">                    [<span class="keyword">static</span>][<span class="keyword">final</span>][<span class="keyword">abstract</span>][<span class="keyword">native</span>][<span class="keyword">synchronized</span>]</span><br><span class="line">                    <span class="comment">//native用来集成java代码和其他语言的代码、</span></span><br><span class="line">                    <span class="comment">//synchronized用来控制多个并发线程对共享数据的访问</span></span><br><span class="line">                    返回类型 方法名([参数列表]) [<span class="keyword">throws</span> exceptionList]</span><br><span class="line">                      &#123;</span><br><span class="line">                        方法体</span><br><span class="line">                      &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>i）类变量，整个类中公共的变量，用<strong>static</strong>修饰；<br>实例变量，是类的成员变量，没被static修饰的变量；<br>i）类方法，<strong>static</strong>修饰，不能声明为抽象的；<br>实例方法，与实例变量一样，只能 &lt;实例名&gt;.&lt;方法名&gt; 进行类外调用</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//对象引用声明</span></span><br><span class="line">类名 引用变量名;</span><br><span class="line"><span class="comment">//对象的创建</span></span><br><span class="line">引用变量名 = <span class="keyword">new</span> &lt;类名&gt;();</span><br><span class="line">=========<span class="comment">//所有的类都有一个默认的toString()方法，默认的toString()返回：</span></span><br><span class="line">=========<span class="comment">//getClass().getName()+&quot;@&quot;+Integer.toHexString(hashcode());//十六进制字符串</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//可变长参数</span></span><br><span class="line"><span class="function"><span class="keyword">static</span> <span class="keyword">double</span> <span class="title">maxArea</span><span class="params">(Circle c, Rectangle... varRec)</span></span>&#123;</span><br><span class="line">    Rectangle[] rec = varRec;</span><br><span class="line">    <span class="keyword">for</span>(Rectangle r : rec)&#123;</span><br><span class="line">    <span class="comment">//...</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>Java编译器为所有程序自动引入包java.lang<br>静态引入：import static –</p>
+<blockquote>
+<p>类的成员访问权限控制<br>public：可以被其他任何方法访问（前提是对类成员所属的类有访问权限）<br>protected：只可被同一类及其子类的方法访问<br>private：只可被同一类的方法访问<br>默认default：仅允许同一个包内的访问，又被称为“包（package）访问权限”</p>
+</blockquote>
+<pre><code>3 - 对象初始化和回收</code></pre>
+<ul>
+<li><strong>==== 构造方法 ====</strong></li>
+</ul>
+<p>· 方法名与类名相同；<br>· 不定义返回类型；<br>· 通常被声明为共有的<strong>public</strong>；<br>· 可以有任意多个参数；<br>· 主要作用是完成对象的初始化工作<br>· 不能在程序中显示的调用<br>· 在生成一个对象时，会自动调用该类的构造方法为新对象初始化<br>· 若未显式声明构造方法，编译器隐含生成默认的构造方法</p>
+<blockquote>
+<p>默认构造方法:<br>没有参数（内部类除外），方法体为空；<br>使用默认的构造方法初始化对象时，如果在类声明中没有给实例变量赋初值，则对象的属性值为0或null；<br>构造方法可以被<strong>重载</strong>:<br>一个类中有两个及以上同名的方法，单参数表不同，这种情况就被称为<strong>方法重载</strong>。<br>可以使用<strong>this</strong>关键字重载构造方法，避免冗余。</p>
+</blockquote>
+<ul>
+<li><strong>==== 对象的自动回收 ====</strong></li>
+</ul>
+<p>· 无用对象；</p>
+<blockquote>
+<p>离开了作用域的对象；<br>无引用指向的对象；</p>
+</blockquote>
+<p>· Java运行时系统通过 垃圾收集器 周期性地释放无用对象所使用的的内存；<br>· Java运行时系统会在对对象进行 自动垃圾回收前 ，自动调用对象的finalize()方法；</p>
+<blockquote>
+<p>在类java.lang.Object中声明，因此Java中每一个类都有finalize()方法<br>protected void finalize() throws throwable<br>用于释放资源。<br>类可以覆盖（重写）finalize()方法。<br>finalize()方法有可能在任何时机以任何次序执行。</p>
+</blockquote>
+<pre><code>4 - 枚举类型</code></pre>
+<p>简单枚举类型、枚举类</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">[<span class="keyword">public</span>] <span class="keyword">enum</span> 枚举类型名称</span><br><span class="line"> [implements 接口名称列表]</span><br><span class="line">&#123;</span><br><span class="line">    枚举值;</span><br><span class="line">    变量成员声明及初始化;</span><br><span class="line">    方法声明及方法体;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="3-类的重用"><a href="#3-类的重用" class="headerlink" title="3. 类的重用"></a>3. 类的重用</h2><pre><code>1 - 类的继承</code></pre>
+<p>超类与子类。关键字<strong>extends</strong>；<br>子类不能直接访问从超类中继承的<strong>私有属性</strong>及方法，但可使用公有（及保护）方法进行访问；</p>
+<blockquote>
+<p><strong>隐藏 与 覆盖</strong><br> 子类中重新声明与超类中<strong>相同名称</strong>的对象，则超类中的<strong>该属性（变量）被隐藏</strong>；<br> 可以用<strong>super</strong>关键字访问超类中的隐藏属性。<br> ====================================================<br>· 如果子类不需要从超类继承来的方法的功能，则可以声明自己的<strong>同名方法</strong>，称为<strong>方法覆盖</strong>；<br>· 覆盖方法的访问权限可以比被覆盖的宽松，但是不能更为严格。<br>· 派生类必须覆盖基类中的抽象的方法，否则派生类自身也成为抽象类；<br>基类中声明为<strong>final、或是static</strong>的方法不能被覆盖；<br>· super.overriddenMethodName(); //调用被覆盖的方法</p>
+</blockquote>
+<pre><code>2 - Object类</code></pre>
+<blockquote>
+<p>所有类的直接或间接超类，处在类层次最高点；<br>包含了所有Java类的公共属性。</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">/Object类的主要方法</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">final</span> Class <span class="title">getClass</span><span class="params">()</span>     /获取当前对象所属类的信息，返回Class对象</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> String <span class="title">toString</span><span class="params">()</span>    /返回表示当前对象本身有关信息的字符串对象</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">equals</span><span class="params">(Object obj)</span>    /比较两个对象引用是否指向同一对象，是则返回<span class="keyword">true</span>，否则返回<span class="keyword">false</span></span></span><br><span class="line"><span class="function"><span class="keyword">protected</span> Object <span class="title">clone</span><span class="params">()</span>    /复制当前对象，并返回这个副本</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">hashCode</span><span class="params">()</span>    /返回该对象的哈希代码值</span></span><br><span class="line"><span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">finalize</span><span class="params">()</span> <span class="keyword">throws</span> Throwable    /在对象被回收时执行，通常完成的资源释放工作</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p><strong>相等和同一</strong><br>两个对象具有<strong>相同的类型，及相同的属性值</strong>，则称二者相等（equal）。<br>如果<strong>两个引用变量指向的是同一个对象</strong>，则称这两个引用变量同一（identical）。<br>i）两个对象同一，则肯定相等；<br>两个对象相等，不一定同一；<br>i）比较运算符“ == ”判断的是这两个对象是否同一。//判断的<strong>引用</strong><br>Object类里的equals()方法 比较的也是引用，所以equals()方法通常需要重写</p>
+</blockquote>
+<blockquote>
+<p><strong>hashCode()方法</strong><br>hashCode是一个返回对象散列码的方法，一般规定：<br>i）在一个Java程序的一次执行过程中，如果对象“相等比较”所使用的信息没有被修改的话，同一对象执行hashCode方法每次都应返回同一个整数。在不同的执行中，对象的hashCode方法返回值不必一致。<br><strong>i）如果依照equals方法两个对象是相等的，则这两个对象上调用hashCode方法应该返回同样的整数结果。</strong><br>只要实现得合理，Object类定义的hashCode方法为不同对象返回不同的整数。<em>一个典型的实现是，将对象的内部地址转换为整数返回，但是Java语言并不要求必须这样实现。</em></p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*clone方法</span></span><br><span class="line"><span class="comment">使用clone方法复制对象</span></span><br><span class="line"><span class="comment">1.覆盖clone方法：在Object类中被定义为protected，所以需要覆盖为public；</span></span><br><span class="line"><span class="comment">2.实现Cloneable接口，赋予一个对象被克隆的能力（cloneability）*/</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyObject</span> <span class="keyword">implements</span> <span class="title">Cloneable</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="comment">//···</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">/finalize方法，如果要覆盖finalize方法，覆盖方法的最后必须调用<span class="keyword">super</span>.finalize</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>notify、notifyAll、wait方法；final方法，不能覆盖；这三个方法主要用在多线程程序中</p>
+</blockquote>
+<pre><code>3 - 终结类与终结方法</code></pre>
+<p> i）用final修饰的类和方法；<br> i）终结类不能被继承；<br> i）终结方法不能被子类覆盖。</p>
+<pre><code>4 - 抽象类</code></pre>
+<p> i）类名前加修饰符abstract；<br> i）可包含常规类能包含的任何成员，包括非抽象方法；<br> i）也可包含抽象方法：用abstract修饰，只有方法原型，没有方法的实现；<br> i）没有具体实例对象的类，不能使用new方法进行实例化，只能用作超类；<br> i）只有当子类实现了抽象超类中的所有抽象方法，子类才不是抽象类，才能产生实例；<br> i）如果子类中仍有抽象方法未实现，则子类也只能是抽象类。</p>
+<pre><code>5 - 泛型</code></pre>
+<ul>
+<li>类型也可以是参数；泛型类  泛型方法<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">GeneralType</span> &lt;<span class="title">Type</span>&gt;</span>&#123;</span><br><span class="line">    Type object;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">GeneralType</span><span class="params">(Type object)</span></span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.object = object;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> Type <span class="title">getObj</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> object;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">在泛型类中可以使用通配符?</span><br></pre></td></tr></table></figure></li>
+<li>有限制的泛型，在参数“Type”后面使用”<strong>extends</strong>“关键字并加上类名或接口名，表明参数所代表的类型必须是该类的子类或者实现了该接口。（注意，对于实现了某接口的有限制泛型，也是使用extends关键字，而不是implements关键字）<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">GeneralType</span> &lt;<span class="title">Type</span> <span class="keyword">extends</span> <span class="title">Number</span>&gt;</span>&#123;</span><br><span class="line">    ··· <span class="comment">//Integer 是 Number 的子类，String不是</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+</li>
+</ul>
+<pre><code>6 - 类的组合</code></pre>
+<ul>
+<li>将已存在类的对象放到新类中即可<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Cooker</span></span>&#123;<span class="comment">//类的语句&#125;</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Refrigerator</span></span>&#123;<span class="comment">//类的语句&#125;</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Kitchen</span></span>&#123;</span><br><span class="line">    Cooker myCooker;</span><br><span class="line">    Refrigerator myRefrigerator;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h2 id="4-接口与多态"><a href="#4-接口与多态" class="headerlink" title="4. 接口与多态"></a>4. 接口与多态</h2><pre><code>1 - 接口</code></pre>
+<p><strong>可以把接口看作纯的抽象类，它只提供设计</strong><br>i）接口（Interface ）中可以规定方法的原型：方法名、参数列表以及返回类型，但不规定方法主体；<br>i）也可以包含基本数据类型的数据成员，但它们都默认为static和final。</p>
+<blockquote>
+<p>接口的作用<br>1.继承多个设计<br>2.建立类和类之间的“协议”</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[接口修饰符] interface 接口名称 [extends 父接口名]&#123;</span><br><span class="line">    ...<span class="comment">//方法的原型声明或静态常量</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>i）接口的数据成员一定要有初值，且此值不能再更改，可以省略final关键字；<br>i）接口中的方法必须是“抽象方法”，不能有方法体，可以省略public及abstract关键字。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">interface</span> <span class="title">Shape2D</span></span>&#123;</span><br><span class="line">    <span class="keyword">double</span> pi = <span class="number">3.14</span>;    <span class="comment">//数据成员一定要初始化，省略了final</span></span><br><span class="line">    <span class="function"><span class="keyword">double</span> <span class="title">area</span><span class="params">()</span></span>;    <span class="comment">//抽象方法，省略了public abstract</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>实现接口：</strong>利用接口设计类的过程，成为接口的实现，使用implements关键字，语法如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> 类名称 <span class="keyword">implements</span> 接口名称 </span>&#123;</span><br><span class="line">    <span class="comment">//在类体中实现接口的方法</span></span><br><span class="line">    <span class="comment">//本类声明的更多变量和方法</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>实现多个接口的语法：</strong>一个类可以实现多个接口，通过这种机制可实现对设计的多重继承；</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">[类修饰符] <span class="class"><span class="keyword">class</span> 类名称 <span class="keyword">implements</span> 接口1，接口2，...</span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">... ...</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//声明Circle类实现接口Shape2D（见上）和Color</span></span><br><span class="line"><span class="class"><span class="keyword">interface</span> <span class="title">Color</span></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">setColor</span><span class="params">(String str)</span></span>; <span class="comment">//抽象方法</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Circle</span> <span class="keyword">implements</span> <span class="title">Shape2D</span>, <span class="title">Color</span>    //实现<span class="title">Circle</span>类</span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="keyword">double</span> radius;</span><br><span class="line">    String color;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Circle</span><span class="params">(<span class="keyword">double</span> r)</span></span>&#123;    <span class="comment">//构造方法</span></span><br><span class="line">        radius = r;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">double</span> <span class="title">area</span><span class="params">()</span></span>&#123;    <span class="comment">//定义area()的处理方式</span></span><br><span class="line">        <span class="keyword">return</span> (pi * radius * radius);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setColor</span><span class="params">(String str)</span></span>&#123;    <span class="comment">//定义setColor()的处理方式</span></span><br><span class="line">        color = str;</span><br><span class="line">        System.out.println(<span class="string">&quot;color=&quot;</span> + color);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MultiTnterfaceTester</span></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span>&#123;</span><br><span class="line">        Circle cir;</span><br><span class="line">        cir = <span class="keyword">new</span> Circle(<span class="number">2.0</span>);</span><br><span class="line">        cir.setColor(<span class="string">&quot;blue&quot;</span>);</span><br><span class="line">        System.out.println(<span class="string">&quot;Area = &quot;</span> + cir.area());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>接口的扩展：</strong>实现一个接口的类也必须实现其超接口</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">interface</span> 子接口的名称 <span class="keyword">extends</span> 超口的名称1，超口的名称2，...</span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    ... ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<pre><code>2 - 类型转换</code></pre>
+<p>1）基本数据类型转换<br>2）引用类型转换，类  接口<br>应用场景：赋值转换、方法调用转换、算术表达式转换、字符串转换</p>
+<p>方法查找：实例方法的查找，类方法的查找</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//其中Manager类继承至Employee类，两类中都分别有</span></span><br><span class="line">/实例方法computePay(); 类方法（静态方法）<span class="function"><span class="keyword">static</span> <span class="title">expenseAllowance</span><span class="params">()</span></span></span><br><span class="line"><span class="function">Mannager man </span>= <span class="keyword">new</span> Manager();</span><br><span class="line">Employee emp1 = <span class="keyword">new</span> Employee();</span><br><span class="line">Employee emp2 = (Employee)man;</span><br><span class="line"></span><br><span class="line">/实例方法的查找，从对象创建时的类开始，沿类层次向上查找</span><br><span class="line">emp1.computePay();    <span class="comment">//调用Employee类中的computePay()方法</span></span><br><span class="line">man.computePay();    <span class="comment">//调用Manager类中的computePay()方法</span></span><br><span class="line">emp2.computePay();    /调用Manager类中的computePay()方法</span><br><span class="line"></span><br><span class="line">/类方法的查找，总是在引用变量声明时所属的类中进行查找</span><br><span class="line">man.expenseAllowance();        <span class="comment">//in Manager</span></span><br><span class="line">emp1.expenseAllowance();    <span class="comment">//in Employee</span></span><br><span class="line">emp2.expenseAllowance();    /in Employee, 因为类方法不属于任何一个对象</span><br></pre></td></tr></table></figure>
+
+<pre><code>3 - 多态的概念</code></pre>
+<p>i）多态指的就是，不同类型的对象，它可以响应相同的消息，而各自对于这个消息的响应行为可以不同。</p>
+<blockquote>
+<p>超类对象和从相同的超类派生出来的多个子类对象，可被当作同一种类型的对象对待；<br>实现同一接口不同类型的对象，可被当作同一种类型的对象对待；<br>可向这些不同的类型对象发送同样的消息，由于多态性，这些<strong>不同类的对象</strong>响应同一消息时的行为可以有所差别。</p>
+</blockquote>
+<p>i）多态的目的：使代码变得简单且容易理解；使程序具有很好的可扩展性。<br>i）技术基础：动态绑定、向上转型</p>
+<pre><code>4 - 多态的应用</code></pre>
+<p>例：二次分发<br>double dispatching，即对输出消息的请求被分发两次；<br>首先根据驾驶员的类型被发送给一个类；<br>之后根据交通工具的类型被发送给另一个类。</p>
+<pre><code>5 - 构造方法与多态</code></pre>
+<blockquote>
+<p>构造子类对象时构造方法的调用顺序：<br>1.首先调用超类的<strong>构造方法</strong>，这个步骤会不断重复下去，首先被执行的是最远超类的构造方法；<br>2.执行当前子类对象的构造方法体其他语句。</p>
+</blockquote>
+<p>构造方法中调用多态方法是有隐患的</p>
+<blockquote>
+<p>实现构造方法的注意事项：<br>1）用尽可能少的动作把对象的状态设置好；<br>2）如果可以避免，不要调用任何方法；<br>3）在构造方法内唯一能够安全调用的是超类中具有final属性的那些方法（也适用于private方法，它们自动具有final属性）。这些方法不能被覆盖，所以不会出现潜在问题。</p>
+</blockquote>
+<h2 id="5-输入输出"><a href="#5-输入输出" class="headerlink" title="5. 输入输出"></a>5. 输入输出</h2><pre><code>1 - 异常处理简介</code></pre>
+<p><strong>异常，又称为例外，是特殊的运行错误对象。</strong><br>i）Java中声明了很多异常类，每个异常类都代表了一种运行错误，类中包含了：该运行错误的信息及处理错误的方法。<br>i）每当Java程序运行过程中发生一个可识别的运行错误时，即该错误有一个异常类与之对应时，系统都会产生一个相应的该异常类的对象，即产生一个异常。</p>
+<blockquote>
+<p>Java异常处理机制的优点：<br>1）将错误处理代码从常规代码中分离出来；<br>2）按错误类型和差别分组；<br>3）对无法预测的错误的捕获和处理；<br>4）克服了传统方法的错误信息有限的问题；<br>5）把错误传播给调用堆栈。</p>
+</blockquote>
+<p><strong>错误的分类：根据错误的严重程度不同，可以分为两类：</strong><br><strong>错误</strong>：致命性的，程序无法处理；<strong>Error类</strong>是所有错误类的父类；<br><strong>异常</strong>：非致命性的，可编制程序捕获和处理；<strong>Exception类</strong>是所有异常类的父类。</p>
+<blockquote>
+<p><strong>非检查型异常：</strong><br>1.不期望程序捕获的异常，在方法中不需要声明，编译器也不进行检查。<br>2.继承自RuntimeException。<br>3.不要求捕获和声明的原因：<br>引发RuntimeException的操作在Java应用程序中会频繁出现；<br>它们表示的问题不一定作为异常处理。<br><strong>检查型异常：</strong><br>1.其他类型的异常；<br>2.如果被调用的方法抛出一个类型为E的检查型异常，那么调用者必须捕获E或者也声明抛出E（或者E的一个父类），对此编译器要进行检查。</p>
+</blockquote>
+<p><strong>Java预定义的一些常见异常：</strong><br>i）非检查型异常：ArithmetricException（整数除法中除数为0）、NullPointerException（访问的对象还没有实例化）、NegtiveArraySizeException（创建数组时元素个数是负数）、ArrayIndexOutOfBoundsException（访问数组元素时，数组下标越界）···<br>i）检查性异常：FileNotFoundException（试图存取一个并不存在的文件）、IOException（通常的I/O错误）···</p>
+<p><strong>检查型异常的处理：</strong><br>1）声明抛出异常<br>不在当前方法内处理异常，可以使用<strong>throws子句声明将异常抛出</strong>到调用方法中；<br>如果所有的方法都选择了抛出异常，最后JVM将捕获它，输出相关的错误信息，并终止程序的运行。<br>2）捕获异常<br>使用<strong>try{}catch(){}块</strong>，捕获到所发生的的异常，并进行相应的处理。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">try</span>&#123;</span><br><span class="line">    可能产生异常的代码块</span><br><span class="line">&#125;<span class="keyword">catch</span>(exceptiontype name)&#123;</span><br><span class="line">    异常处理语句，通常要用到两个方法：</span><br><span class="line">    getMessage() - 返回一个字符串，对发生的异常进行描述；</span><br><span class="line">    printStackTrace() - 给出方法的调用序列，一直到异常的产生位置。</span><br><span class="line">&#125;<span class="keyword">finally</span>&#123;</span><br><span class="line">    不论在<span class="keyword">try</span>代码段里是否发生异常，<span class="keyword">finally</span>后的程序代码段都会被执行。通常在这里释放内存以外的其他资源。</span><br><span class="line">&#125;</span><br><span class="line">/如果并列有多个<span class="keyword">catch</span>语句捕获多个异常，则一般的异常类型放在后面，特殊的放在前面。</span><br></pre></td></tr></table></figure>
+<p><strong>生成异常对象</strong><br>1）由Java虚拟机生成；<br>2）由Java类库中的某些类生成；<br>3）在自己写的程序中生成和抛出异常对象。<br>抛出异常对象都是通过throw语句实现，异常对象必须是Throwable或其子类的实例：throw new ThrowableObject();</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">声明自己的异常类：自定义的所有异常类都必须是Exception的子类</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyExceptionName</span> <span class="keyword">extends</span> <span class="title">SuperclassOfMyException</span></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">MyException</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">super</span>(<span class="string">&quot;Some string explaining the exception&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<pre><code>2 - 输入、输出流的概念</code></pre>
+<p><strong>预定义的 I/O流类</strong><br>i）从流的方向划分：输入流、输出流；<br>i）从流的分工划分：节点流、处理流；<br>i）从流的内容划分：面向字符的流（专门用于字符数据）、面向字节的流（用于一般目的）；</p>
+<blockquote>
+<p>面向字符的流：<br>1）源或目标通常是文本文件；<br>2）实现内部格式（16-bit char 数据类型）和文本文件中的外部格式（UTF、包括ASCII码及非ASCII码字符）之间转换</p>
+</blockquote>
+<blockquote>
+<p><strong>面向字符的抽象流类–Reader和Writer</strong><br>1）java.io包中所有字符流类的抽象超类<br>2）Reader、Writer分别提供了输入、输出字符的API<br>3）它们的子类又可分为两大类：<br>ii）节点流：从数据源读入数据或往目的地写出数据；<br>ii）处理流：对数据执行某种处理。<br>4）多数程序使用这两个抽象类的一系列子类来读入/写出文本信息<br> 比如FileReader/FileWriter用来读/写文本文件。<br><strong>面向字节的抽象流类–InputStream和OutputStream</strong><br>是用来处理字节流的抽象基类，程序使用这两个类的子类来读写字节信息<br>分为节点流、处理流</p>
+</blockquote>
+<p>System类的静态成员变量：<br>i）<strong>System.in</strong>：InputStream类型的，代表<strong>标准输入流</strong>，默认状态对应于显示器输出。<br>i）<strong>System.out</strong>：PrintStream类型的，代表<strong>标准输出流</strong>，默认状态对应于显示器输出。<br>i）<strong>Syetem.err</strong>：PrintStream类型的，代表<strong>标准错误信息输出流</strong>，默认状态对应于显示器输出。</p>
+<p><strong>按类型输入/输出数据</strong><br>i）printf方法：<br>System.out.printf(“%-12s is %d long”, name, l);<br>System.out.printf(“value = %2.2F”, value);<br>%n 是平台无关的换行标志。<br>i）<strong>Scanner</strong><br>Scanner s = new Scanner(System.in);<br>int n = s.nextInt();<br>还有下列方法：nextByte(),    nextDouble(),    nextFloat(),    nextInt(),    nextLine(),    nextLong(),    nextShort().</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">标准输入/输出重定向（复制文件）</span><br><span class="line"><span class="keyword">import</span> java.io.*;</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Redirecting</span></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(string[] args)</span> <span class="keyword">throws</span> IOException </span>&#123;</span><br><span class="line">        <span class="comment">//将输入关联到磁盘文件，默认是键盘输入</span></span><br><span class="line">        BufferedInputStream in = <span class="keyword">new</span> BufferedInputStream(<span class="keyword">new</span> FileInputStream(<span class="string">&quot;Redirecting.java&quot;</span>));</span><br><span class="line">        <span class="comment">//将输出关联到另一磁盘文件，默认是显示器输出</span></span><br><span class="line">        PrintStream out = <span class="keyword">new</span> PrintStream(<span class="keyword">new</span> BufferedOutStream(<span class="keyword">new</span> FileOutputStream(<span class="string">&quot;test.out&quot;</span>)));</span><br><span class="line">        <span class="comment">//重新定向</span></span><br><span class="line">        System.setIn(in);</span><br><span class="line">        System.setOut(out);</span><br><span class="line">        System.setErr(out);</span><br><span class="line">        <span class="comment">//缓冲流是输入效率更高，但不执行读取操作，是处理流，InputStreamReader是字节流与字符流的一个桥梁，属于面向字符的输入流</span></span><br><span class="line">        BufferedReader br = <span class="keyword">new</span> BufferedReader(<span class="keyword">new</span> InputStreamReader(System.in));</span><br><span class="line">        String s;</span><br><span class="line">        <span class="keyword">while</span>((s = br.readLine()) != <span class="keyword">null</span>)</span><br><span class="line">            System.out.printLn(s);    <span class="comment">//完成复制</span></span><br><span class="line">        in.close();</span><br><span class="line">        out.close();    <span class="comment">//关闭流</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<pre><code>文件读写</code></pre>
+<p><strong>1）写文本文件</strong><br>创建：FileWriter writer = new FileWriter(fileName, true);<br>写入：writer.write(“Hello!\n”);    ···<br>关闭：writer.close();    //写入结束</p>
+<p> \n在不同的平台不一定代表换行，可以使用<br>创建：<strong>BufferedWriter writer = new BufferedWriter(new FileWriter(fileName));</strong><br>写入：writer.write(“Hello!”);<br><strong>writer.newLine();</strong><br>关闭：writer.close();</p>
+<p><strong>2）读文本文件</strong><br>i）FileReader类：从文本文件中读取字符；继承自Reader抽象类的子类InputStreamReader。<br><strong>i）BufferedReader</strong>：读文本文件的缓冲器类；具有readLine()方法，可以对换行符进行鉴别，一行一行地读取输入流中的内容；继承自Reader。<br>注：close()方法在写入时最好有（调用flush()方法不一定写入成功），在读取时主要是为了节省系统资源。</p>
+<p><strong>3）写二进制文件</strong><br>二进制文件写入更快，占用空间更小；<br>抽象类OutoutStream<br>1）派生类FileOutputStream：<br>用于一般目的输出（非字符输出）；<br>用于成组字节输出。<br><strong>2）派生类DataOutputStream：</strong><br>具有写个种基本数据类型的方法；writeInt() ···<br>将数据写到另一个输出流；<br>它在所有计算机平台上使用同样的数据格式；<br>其中size方法，可作为计数器，统计写入的字节数。</p>
+<p>BufferedOutputStream类<br>DataOutputStream out = new DataOutputStream(new BufferedOutputStream(new FileOutputStream(fileName)));</p>
+<p><strong>4）读二进制文件</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">通过捕获异常控制读取结束</span><br><span class="line"><span class="keyword">import</span> java.io.*;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">DataInputStreamTester</span></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span>&#123;</span><br><span class="line">        String fileName = <span class="string">&quot;data1.dat&quot;</span>;</span><br><span class="line">        <span class="keyword">long</span> sum = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">try</span>&#123;</span><br><span class="line">            DataInputStream instr = <span class="keyword">new</span> DataInputStream(<span class="keyword">new</span> BufferedInputStream(<span class="keyword">new</span> FileInputStream(fileName)));</span><br><span class="line">            <span class="keyword">try</span>&#123;</span><br><span class="line">                <span class="keyword">while</span>(<span class="keyword">true</span>)</span><br><span class="line">                    sum += instr.readInt();</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">catch</span>(EOFException eof)&#123;</span><br><span class="line">            System.out.println(<span class="string">&quot;The sum is:&quot;</span> + sum);</span><br><span class="line">            instr.close();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">catch</span>(IOException iox)&#123;</span><br><span class="line">            System.out.println(<span class="string">&quot;IO problems with&quot;</span> + fileName);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>也可以用字节流读取文本文件</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.io.*;</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">InputStreamTeater</span></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> IOException </span>&#123;</span><br><span class="line">        FileInputStream s = <span class="keyword">new</span> FileInputStream(<span class="string">&quot;Hello.txt&quot;</span>);</span><br><span class="line">        <span class="keyword">int</span> c;</span><br><span class="line">        <span class="keyword">while</span>((c = s.read()) != -<span class="number">1</span>) <span class="comment">//读取字节，结束返回-1</span></span><br><span class="line">            System.out.write(c);</span><br><span class="line">        s.close();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">read()方法读取一个字节，转化为[<span class="number">0</span>, <span class="number">255</span>]的之间的一个整数，返回一个<span class="keyword">int</span>。如果读到了文件末尾，则返回-<span class="number">1.</span></span><br><span class="line">write()方法写一个字节的低<span class="number">8</span>位，忽略高<span class="number">24</span>位。</span><br></pre></td></tr></table></figure>
+<p><strong>读写字节</strong><br>1）DataOutputStream的writeByte方法：<br>public final void writeByte(int b) throws IOException<br>将int的最不重要字节写入输出流。<br>2）DataInputStream的readUnsignedByte方法：<br>public final int readUnsignedByte() throws IOException<br>从输入流中读取1字节存入int的最不重要字节。</p>
+<p><strong>5）File类</strong><br>i）创建、删除文件；<br>i）重命名文件；<br>i）判断文件的读写权限及是否存在；<br>i）设置和查询文件的最近修改时间等；<br>i）构造文件流可以使用File类的对象作为参数。</p>
+<blockquote>
+<p>File f = new File(“Hello.txt”);</p>
+</blockquote>
+<p><strong>6）处理压缩文件</strong><br>压缩流类<br>1）GZIPOutputStream和ZipOutputStream<br>可分别把数据压缩成GZIP格式和Zip格式<br>2）GZIPInputStream和ZipInputStream<br>可以分别把压缩成GZIP格式或Zip的数据解压缩恢复原状</p>
+<p><strong>7）对象序列化</strong><br>实现对象的读写<br>i）通过ObjectOutputStream把对象写入磁盘文件<br>i）通过ObjectInputStream把对象读入程序<br>不保存对象的transient和static类型的变量<br>对象要想实现序列化，其所属的类必须实现Serializable接口</p>
+<blockquote>
+<p>注：ObjectOutputStream和ObjectInputStream都是处理流，要通过节点流来构造：<br>FileOutputStream out = new FileOutputStream(“the Time”);<br>ObjectOutputStream s = new ObjectOutputStream(out);</p>
+</blockquote>
+<p><strong>Serielizable</strong><br>1）Serializable接口的定义<br>package java.io;<br>public interface Serializable{<br>   // there’s nothing in hear!<br>}<br>2）实现Serializable接口的语句<br>public class MyClass implements Serializable {<br>   ···<br>}<br>3）使用关键字<strong>transient</strong>可以阻止对象的某些成员被自动写入文件</p>
+<p><strong>Externalizable</strong>接口<br>1）API中的说明为<br>public interface Externalizable extends Serializable<br>2）其中有两个方法writeExternal()和readExternal()，因此实现该接口的类必须实现这两个方法<br>3）ObjectOutputStream的writeObject()方法只写入对象的标识，然后调用对象的所属类的writeExternal()<br>4）ObjectInputStream的readObject()方法调用对象所属类的readExternal()</p>
+<p><strong>8）随机文件读写</strong><br>RandomAccessFile类<br>i）可跳转到文件的任意位置读/写数据<br>i）可在随机文件中插入数据，而不是破坏该文件的其他数据<br>i）实现了DataInput和DataOutput接口，可使用普通的读写方法<br>i）有个位置指示器，指向当前读写处的位置。刚打开文件时，文件指示器指向文件的开头处。对文件指针显示操作的方法有：<br>  int skipBytes(int n)：把文件指针向前移动指定的n个字节<br>  void seek(long)：移动文件指针到指定的位置<br>  long getFilePointer()：得到当前的文件指针<br>i）在等长记录格式文件的随机读取时有很大的优势，但仅限于操作文件，不能访问其它IO设备，如网络、内存映像等</p>
+<h2 id="6-对象群体的组织"><a href="#6-对象群体的组织" class="headerlink" title="6. 对象群体的组织"></a>6. 对象群体的组织</h2><h2 id="7-图形用户界面"><a href="#7-图形用户界面" class="headerlink" title="7. 图形用户界面"></a>7. 图形用户界面</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">solution</span></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span>&#123;</span><br><span class="line">        system.out.println(<span class="string">&quot;hello world&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2020/07/15/Java%E5%9F%BA%E7%A1%80%E7%AF%87/" data-id="ckdeis6zb0006lwulcmbt20ul" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/" rel="tag">java</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%B0%8F%E7%99%BD%E5%9F%BA%E7%A1%80/" rel="tag">小白基础</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2020/07/16/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Lu小白的进阶之路：计算机网络
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2020/07/15/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Lu小白的进阶之路：数据结构</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/JZ/" rel="tag">JZ</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java/" rel="tag">java</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/job/" rel="tag">job</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%B0%8F%E7%99%BD%E5%9F%BA%E7%A1%80/" rel="tag">小白基础</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%9A%8F%E7%AC%94/" rel="tag">随笔</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/JZ/" style="font-size: 16.67px;">JZ</a> <a href="/tags/java/" style="font-size: 20px;">java</a> <a href="/tags/job/" style="font-size: 13.33px;">job</a> <a href="/tags/%E5%B0%8F%E7%99%BD%E5%9F%BA%E7%A1%80/" style="font-size: 16.67px;">小白基础</a> <a href="/tags/%E9%9A%8F%E7%AC%94/" style="font-size: 10px;">随笔</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/08/">August 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">July 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">June 2020</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2020/08/03/hello-world/">Hello World</a>
+          </li>
+        
+          <li>
+            <a href="/2020/07/29/%E5%89%91%E6%8C%87offer%E4%B9%A0%E9%A2%98%E5%85%AD%EF%BC%8826-30%EF%BC%89/">剑指offer习题六（26-30）</a>
+          </li>
+        
+          <li>
+            <a href="/2020/07/28/%E5%89%91%E6%8C%87offer%E4%B9%A0%E9%A2%98%E4%BA%94%EF%BC%8821-25%EF%BC%89/">剑指offer习题五（21-25）</a>
+          </li>
+        
+          <li>
+            <a href="/2020/07/27/%E5%89%91%E6%8C%87offer%E4%B9%A0%E9%A2%98%E5%9B%9B%EF%BC%8816-20%EF%BC%89/">剑指offer习题四（16-20）</a>
+          </li>
+        
+          <li>
+            <a href="/2020/07/25/%E5%89%91%E6%8C%87offer%E4%B9%A0%E9%A2%98%E4%B8%89%EF%BC%8811-15%EF%BC%89/">剑指offer习题三（11-15）</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2020 Sam Lu<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>
