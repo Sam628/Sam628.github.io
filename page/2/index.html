@@ -90,7 +90,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/07/17/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" data-id="ckdlorw47000qd4ul02ytaq1z" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/07/17/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" data-id="ckdlqfk0p000qbcul9e2v667g" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%B0%8F%E7%99%BD%E5%9F%BA%E7%A1%80/" rel="tag">小白基础</a></li></ul>
@@ -128,7 +128,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/07/16/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%9F%BA%E7%A1%80/" data-id="ckdlorw48000sd4ula9b8a1cn" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/07/16/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%9F%BA%E7%A1%80/" data-id="ckdlqfk0r000sbcul18a44dnj" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%B0%8F%E7%99%BD%E5%9F%BA%E7%A1%80/" rel="tag">小白基础</a></li></ul>
@@ -166,7 +166,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/07/16/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" data-id="ckdlorw4b000xd4ul99rt4ft5" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/07/16/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" data-id="ckdlqfk0t000xbcul5u3a8guy" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%B0%8F%E7%99%BD%E5%9F%BA%E7%A1%80/" rel="tag">小白基础</a></li></ul>
@@ -211,7 +211,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/07/15/Java%E5%9F%BA%E7%A1%80%E7%AF%87/" data-id="ckdlorw5k001dd4ul21052x3u" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/07/15/Java%E5%9F%BA%E7%A1%80%E7%AF%87/" data-id="ckdlqfk2e001dbcul3rudcl3g" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/" rel="tag">java</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%B0%8F%E7%99%BD%E5%9F%BA%E7%A1%80/" rel="tag">小白基础</a></li></ul>
@@ -273,11 +273,19 @@
 <p><strong>动态空间管理：</strong><br>在即将发生上溢时，适当地扩大内部数组的容量<br>扩容策略：（扩容的时间成本不同）<br>递增式扩容、加倍式扩容</p>
 <p>平均分析 与 分摊分析</p>
 <pre><code>3 - 无序向量</code></pre>
+<p>Vector&lt; TYPE&gt; myVector;<br>元素访问、插入、区间删除、单元素删除、查找、唯一化、遍历<br>  输入敏感：最好O(1)、最坏O(n)</p>
+<pre><code>4 - 有序向量：唯一化</code></pre>
+<p>与起泡排序算法的理解相同，有序/无序序列中，任意/总有一对相邻元素顺序/逆序；<br>因此，相邻逆序对的数目，可用以度量向量的逆序程度；<br>无序向量经预处理转换为有序向量之后，相关算法多可优化；</p>
+<pre><code>5 - 有序向量：二分查找</code></pre>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</span><br><span class="line"><span class="function"><span class="keyword">static</span> Rank <span class="title">binSearch</span><span class="params">(T* A, T <span class="keyword">const</span>&amp; e, Rank lo, Rank hi)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">while</span>(lo &lt; hi)&#123;    <span class="comment">//每步迭代可能要做两次比较判断，有三个分支</span></span><br><span class="line">        Rank mi = (lo + hi) &gt;&gt; <span class="number">1</span>;  <span class="comment">//以中点为轴点</span></span><br><span class="line">        <span class="keyword">if</span>(e &lt; A[mi]) hi = mi;  <span class="comment">//深入前半段[lo,mi)继续查找</span></span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span>(A[mi] &lt; e) lo = mi + <span class="number">1</span>;  <span class="comment">//深入后半段(mi,hi)</span></span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">return</span> mi;  <span class="comment">//在mi处命中</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">-1</span>;  <span class="comment">//查找失败</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/07/15/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" data-id="ckdlorw4a000vd4ul3jxo8zky" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/07/15/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" data-id="ckdlqfk0s000vbculdjv6ft8u" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/" rel="tag">java</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%B0%8F%E7%99%BD%E5%9F%BA%E7%A1%80/" rel="tag">小白基础</a></li></ul>
@@ -320,7 +328,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/07/14/Lu%E5%B0%8F%E7%99%BD%E7%9A%84%E8%BF%9B%E9%98%B6/" data-id="ckdlorw330000d4ulbeppa0mr" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/07/14/Lu%E5%B0%8F%E7%99%BD%E7%9A%84%E8%BF%9B%E9%98%B6/" data-id="ckdlqfjzr0000bcul9ema7bze" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%B0%8F%E7%99%BD%E5%9F%BA%E7%A1%80/" rel="tag">小白基础</a></li></ul>
@@ -363,7 +371,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/07/13/%E5%9B%BD%E4%BC%81%E6%8B%9B%E8%81%98/" data-id="ckdlorw43000ld4uld94xdls4" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/07/13/%E5%9B%BD%E4%BC%81%E6%8B%9B%E8%81%98/" data-id="ckdlqfk0m000lbculgpzq2j08" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/job/" rel="tag">job</a></li></ul>
@@ -406,7 +414,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/07/13/%E5%A4%A7%E5%8E%82%E6%8B%9B%E8%81%98/" data-id="ckdlorw44000nd4ulf9ozf2om" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/07/13/%E5%A4%A7%E5%8E%82%E6%8B%9B%E8%81%98/" data-id="ckdlqfk0n000nbcul26s2aaby" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/job/" rel="tag">job</a></li></ul>
@@ -444,7 +452,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/06/18/%E9%9A%8F%E7%AC%94/" data-id="ckdlorw4d0010d4ul6ccjgi96" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/06/18/%E9%9A%8F%E7%AC%94/" data-id="ckdlqfk0v0010bcul9kpi20ap" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E9%9A%8F%E7%AC%94/" rel="tag">随笔</a></li></ul>
