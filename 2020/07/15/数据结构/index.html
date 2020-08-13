@@ -16,7 +16,7 @@
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="file:///C:/Users/aloha/AppData/Roaming/Tencent/Users/1641704131/QQ/WinTemp/RichOle/2~FA4$C[N%7DJUN(NHFQ)QL1G.png">
 <meta property="article:published_time" content="2020-07-14T23:11:43.000Z">
-<meta property="article:modified_time" content="2020-08-08T13:57:55.458Z">
+<meta property="article:modified_time" content="2020-08-10T01:40:30.947Z">
 <meta property="article:author" content="Sam Lu">
 <meta property="article:tag" content="小白基础">
 <meta property="article:tag" content="java">
@@ -110,7 +110,7 @@
 <p>利用 递归（work 、right）找出算法本质 + 迭代（fast）的形式= 实现动态规划<br><strong>fib(n) = fib(n-1) + fib(n-2)</strong><br>自顶向下递归，自底而上迭代</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">f &#x3D; 0; g &#x3D; 1; &#x2F;&#x2F;fib(0), fib(1)</span><br><span class="line">while(0 &lt; n--)&#123;</span><br><span class="line">    g &#x3D; g + f;</span><br><span class="line">    f &#x3D; g - f; &#x2F;&#x2F;f&#x3D;原来的g</span><br><span class="line">&#125;</span><br><span class="line">return g;</span><br></pre></td></tr></table></figure>
 <p><strong>最长公共子序列LCS</strong><br>对于序列A[0, n]和B[0, m]，LCS(A, B)无非三种情况<br>0）若n = -1 或 m = -1，则取作空序列（””）//递归基<br>1）若A[n] = ‘X’ = B[m]，则取作LCS(A[0, N), B[0, m)) + ‘X’ //减而治之<br>2）A[n] ≠ B[m]，则在LCS(A[0, n], B[0, m)) 与LCS(A[0, n), B[0, m]) 中取更长者  //分而治之</p>
-<h2 id="2-向量Vector"><a href="#2-向量Vector" class="headerlink" title="2.向量Vector"></a>2.向量Vector</h2><pre><code>1 - 接口与实现</code></pre>
+<h2 id="2-向量Vector"><a href="#2-向量Vector" class="headerlink" title="2. 向量Vector"></a>2. 向量Vector</h2><pre><code>1 - 接口与实现</code></pre>
 <p><strong>序列Sequence：向量Vector、 列表List</strong></p>
 <p>抽象数据类型 = 数据模型 + 定义在该模型上的一组操作<br>数据结构 = 基于某种特定语言，实现ADT的一整套算法<br>  <strong>数据结构</strong>涉及到：具体实现、多种实现、内部的表示与实现、完整的算法、与复杂度密切相关、要考虑数据的具体存储机制。</p>
 <p><strong>向量ADT</strong>（抽象数据类型）：<br>i）从数组到向量，向量是数组的抽象与泛化，有一组元素按线性次序封装而成；<br>i）各元素与[0, n)内的秩（rank）一一对应；<br>i）元素的类型不限于基本类型；<br>i）操作、管理维护更加简化、统一与安全；<br>i）可更为便捷地参与复杂数据结构的定制与实现。</p>
@@ -125,14 +125,59 @@
 <p>与起泡排序算法的理解相同，有序/无序序列中，任意/总有一对相邻元素顺序/逆序；<br>因此，相邻逆序对的数目，可用以度量向量的逆序程度；<br>无序向量经预处理转换为有序向量之后，相关算法多可优化；</p>
 <pre><code>5 - 有序向量：二分查找</code></pre>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</span><br><span class="line"><span class="function"><span class="keyword">static</span> Rank <span class="title">binSearch</span><span class="params">(T* A, T <span class="keyword">const</span>&amp; e, Rank lo, Rank hi)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">while</span>(lo &lt; hi)&#123;    <span class="comment">//每步迭代可能要做两次比较判断，有三个分支</span></span><br><span class="line">        Rank mi = (lo + hi) &gt;&gt; <span class="number">1</span>;  <span class="comment">//以中点为轴点</span></span><br><span class="line">        <span class="keyword">if</span>(e &lt; A[mi]) hi = mi;  <span class="comment">//深入前半段[lo,mi)继续查找</span></span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span>(A[mi] &lt; e) lo = mi + <span class="number">1</span>;  <span class="comment">//深入后半段(mi,hi)</span></span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">return</span> mi;  <span class="comment">//在mi处命中</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">-1</span>;  <span class="comment">//查找失败</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<pre><code>6 - 有序向量：Fibonacci查找</code></pre>
+<p>上述版本的二分查找，转向左（+1）、右（+2）分支前的关键码比较次数不等，而递归深度却相同；<br>Rank mi = lo + fib.get() -1;<br>Fibonacci查找的ASL（平均查找长度），（在常系数的意义上）优于二分查找。</p>
+<pre><code>7 - 有序向量：二分查找（改进）</code></pre>
+<p>二分查找中左、右分支转向代价不平衡的问题，也可直接解决<br>1）e &lt; x<br>2）x &lt;= e<br>只有当元素数目hi - lo = 1时，才能判断该元素是否命中</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">while</span>(<span class="number">1</span> &lt; hi - lo)&#123;</span><br><span class="line">    Rank mi = (lo + hi) &gt;&gt; <span class="number">1</span>;</span><br><span class="line">    (e &lt; A[mi]) ? hi = mi : lo = mi; <span class="comment">//[lo, mi)或[mi, hi)</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">return</span> (e == A[lo]) ? lo : <span class="number">-1</span>;</span><br></pre></td></tr></table></figure>
+<p>从功能、语义、性能上推荐以下算法：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">while</span>(lo &lt; hi) &#123;</span><br><span class="line">    Rank mi = (lo + hi) &gt;&gt; <span class="number">1</span>;</span><br><span class="line">    (e &lt; A[mi]) ? hi = mi : lo = mi + <span class="number">1</span>;     (e &lt; A[mi]) ? hi = mi : lo = mi; <span class="comment">//[lo, mi)或(mi, hi)</span></span><br><span class="line">&#125;<span class="comment">//出口时，A[lo = hi]为大于e的最小元素</span></span><br><span class="line"><span class="keyword">return</span> --lo; <span class="comment">//故lo - 1即不大于e的元素的最大秩</span></span><br></pre></td></tr></table></figure>
 
+<pre><code>8 - 有序向量：插值查找</code></pre>
+<p>假设：已知有序向量中各元素随机分布的规律<br>比如：均匀且独立的随机分布</p>
+<p>平均情况：每经一次比较，n缩至 根号n</p>
+<p>大规模：差值查找<br>中规模：折半查找<br>小规模：顺序查找<br>综合使用</p>
+<pre><code>9 - 起泡排序</code></pre>
+<p>以下改进之后可避免有部分后缀已经是有序的情况</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt; <span class="keyword">void</span> Vector&lt;T&gt;::bubbleSort(Rank lo, Rank hi)&#123;</span><br><span class="line"> <span class="keyword">while</span>(lo &lt; (hi = bubble(lo, hi)));  <span class="comment">//逐趟扫描交换，直至全序</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt; Rank Vector&lt;T&gt;::bubble(Rank lo, Rank hi) &#123;</span><br><span class="line">    Rank last = lo; <span class="comment">//最右侧的逆序队初始化为[lo - 1, lo]</span></span><br><span class="line">    <span class="keyword">while</span>(++lo &lt; hi)&#123; <span class="comment">//自左向右，逐一检查各对相邻元素</span></span><br><span class="line">        <span class="keyword">if</span>(_elem[lo - <span class="number">1</span>] &gt; _elem[lo])&#123; <span class="comment">//若（严格）逆序，则</span></span><br><span class="line">            last = lo; <span class="comment">//更新最右侧逆序对位置记录，并</span></span><br><span class="line">            swap(_elem[lo - <span class="number">1</span>], _elem[lo]); <span class="comment">//交换</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> last; <span class="comment">//返回最右侧的逆序对位置</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-
+<pre><code>10 - 归并排序</code></pre>
+<p>Comparison Based Algorithm 下界O(nlogn)</p>
+<p>//分治策略、向量与列表通用</p>
+<ol>
+<li>序列一分为二   //O(1)<ol start="2">
+<li>序列递归排序   //2 x T(n/2)<ol start="3">
+<li>归并有序子序列   //O(n)</li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+<p><strong>二路归并</strong>：两个子序列的首元素，不停取出小的那个</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//B[j]和C[k]中，小者转至A的末尾</span></span><br><span class="line"><span class="keyword">for</span>(Rank i=<span class="number">0</span>, j=<span class="number">0</span>, k=<span class="number">0</span>; (j&lt;lb) || (k&lt;lc);)&#123;</span><br><span class="line">    <span class="keyword">if</span>((j&lt;lb) &amp;&amp; (lc &lt;= k || B[j] &lt;= C[k]))</span><br><span class="line">        A[i++] = B[j++];</span><br><span class="line">    <span class="keyword">if</span>((k&lt;lc) &amp;&amp; (lb &lt;= j || C[k] &lt; B[j]))</span><br><span class="line">        A[i++] = C[k++];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>对于规模n的向量，归并排序的最优、最坏时间复杂度都是O(nlogn)</p>
+<h2 id="3-列表-List"><a href="#3-列表-List" class="headerlink" title="3. 列表 List"></a>3. 列表 List</h2><pre><code>1 - 接口与实现</code></pre>
+<p>从静态到动态<br>从向量到列表：<br>  列表（list）是采用动态存储策略的典型结构；其中的元素称为节点（node），各节点通过指针或引用彼此联接，在逻辑上构成一个线性序列。</p>
+<p>循秩访问 call-by-rank 到 循位置访问 call-by-position</p>
+<p>双向链表 ListNode 实现<br>header  first  last  trailer</p>
+<pre><code>2 - 无序列表</code></pre>
+<p>循秩访问、查找、插入与复制、删除与析构、唯一化</p>
+<pre><code>3 - 有序列表</code></pre>
+<p>唯一化、查找</p>
+<pre><code>4 - 选择排序</code></pre>
+<p>Selectionsort<br>起泡排序效率太低</p>
+<p>selectMax()<br>移动操作元素远远少于Bubblesort，实际花费时间少</p>
+<pre><code>5 - 插入排序</code></pre>
+<p>有序前缀 无序后缀<br>依次将无序后缀的首元素插入前缀有序子序列</p>
+<p>不使用Vector可以避免元素存储位置的移动</p>
+<p>平均复杂度O(n²)</p>
+<p>逆序对：inversion 左大右小</p>
+<h2 id="4-栈与队列"><a href="#4-栈与队列" class="headerlink" title="4. 栈与队列"></a>4. 栈与队列</h2><pre><code>1 - 栈接口与实现</code></pre>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/07/15/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" data-id="ckdlqfk0s000vbculdjv6ft8u" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/07/15/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" data-id="ckds2q1n6000vjsul0dk4f5sg" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/" rel="tag">java</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%B0%8F%E7%99%BD%E5%9F%BA%E7%A1%80/" rel="tag">小白基础</a></li></ul>

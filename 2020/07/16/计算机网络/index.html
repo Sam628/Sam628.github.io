@@ -7,13 +7,15 @@
   
   <title>Lu小白的进阶之路：计算机网络 | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="article">
+  <meta name="description" content="Application layerTransport layerNetwork layerData Link layerPhysical layer五层参考模型：其实是将TCP&#x2F;IP四层参考模型的网络接入层进行了分割，用OSI七层参考模型的下两层来替代">
+<meta property="og:type" content="article">
 <meta property="og:title" content="Lu小白的进阶之路：计算机网络">
 <meta property="og:url" content="http://yoursite.com/2020/07/16/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/index.html">
 <meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="Application layerTransport layerNetwork layerData Link layerPhysical layer五层参考模型：其实是将TCP&#x2F;IP四层参考模型的网络接入层进行了分割，用OSI七层参考模型的下两层来替代">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2020-07-16T09:12:41.000Z">
-<meta property="article:modified_time" content="2020-07-18T08:12:41.826Z">
+<meta property="article:modified_time" content="2020-08-12T02:44:09.474Z">
 <meta property="article:author" content="Sam Lu">
 <meta property="article:tag" content="小白基础">
 <meta name="twitter:card" content="summary">
@@ -87,11 +89,77 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        
+        <p>Application layer<br>Transport layer<br>Network layer<br>Data Link layer<br>Physical layer<br>五层参考模型：其实是将TCP/IP四层参考模型的网络接入层进行了分割，用OSI七层参考模型的下两层来替代</p>
+<a id="more"></a>
+
+<h2 id="1-概述"><a href="#1-概述" class="headerlink" title="1. 概述"></a>1. 概述</h2><p>计算机网络的基本概念（比如：封装、调制、编码）<br>计算机网络的基本理论（比如：如何共用高速信道）<br>计算机网络的基本技术和协议（比如：TCP/IP、CIDR）<br> 网络设备的基本操作（路由器、交换机）<br> 报文抓取和分析工具的使用<br> 基本的套接字（Socket）编程</p>
+<pre><code>互联网发展简史：</code></pre>
+<p>1969 ARPANet<br>1981 两网互联（互联网正式诞生）<br>  主要技术特点：TCP/IP协议簇形成<br>走向大众：<br>  1985 Windows发布<br>  1989 第一个Web服务器和第一个Web客户机，即World Wide Web<br>  1993 第一款浏览器 Mosaic 诞生</p>
+<p>1994年4月20日，中国客服重重障碍，实现了与Internet的全功能连接</p>
+<pre><code>常用基本概念</code></pre>
+<p>万维网是是构建在Internet上的分布式系统</p>
+<p><strong>拓扑：</strong>信道的分布方式<br>总线拓扑：主机挂接在总线上，相互直接互通<br>星型拓扑：主机都挂接在一个中心节点上</p>
+<p><strong>协议：</strong>一系列规则和约定的规范性描述，它控制网络中的设备之间如何进行信息互换</p>
+<p><strong>数字带宽：</strong>指在单位时间内流经的信息总量<br>  基本单位：比特每秒，即bps</p>
+<p><strong>吞吐量（Throughput）：</strong>指实际的、可测到的带宽</p>
+<p>点到点</p>
+<p>端到端</p>
+<p>计算机网络划分：<br>PAN    LAN    MAN    WAN    Internet</p>
+<pre><code>参考模型（重点）</code></pre>
+<p>分层模型</p>
+<p><em>OSI（Open System Interconnection）参考模型</em><br><strong>7. Application：应用层</strong>，主要为各种各样的网络应用提供网络服务 Email、FTP、微信<br><strong>6. Presentation：表示层</strong>，将信息表示为一定形式和格式的数据流；压缩解压缩、加密解密等都是这层的任务<br><strong>5. Session：会话层</strong>，它负责通信主机间的会话的建立、管理和拆除；协调、通信双方<br><strong>4. Transport：传输层</strong>，是参考模型的核心层之一，它负责通信主机间<strong>端到端连接</strong>；对于TCP来说，还负责提供可靠传输、差错恢复、拥塞控制等额外的功能<br><strong>3. NetWork：网络层</strong>，是另一个核心层，它的功能可用<strong>地址</strong>和<strong>最优路径</strong>来描述；它负责将每一个分组从源机一路送达目的机<br><strong>2. Data Link：数据链路层</strong>，通过物理地址识别通信主机，提供可靠的帧传递并做差错控制，流控等<br><strong>1. Physical：物理层</strong>，它提供透明的<strong>比特流传输</strong></p>
+<p><em>TCP/IP参考模型</em><br><strong>Application：应用层</strong><br><strong>Transport：传输层</strong><br><strong>Internet：Internet</strong><br><strong>Network Access：物理层</strong></p>
+<pre><code>数据如何传输</code></pre>
+<p>发方：封装/打包<br>  <strong>协议数据单元PDU</strong><br>  信息（Information，应用层）<br>  数据流（Data stream，上三层）<br>  数据段（Segment，传输层）<br>  分组（Packet，网络层）<br>  帧（Frame，数据链路层）<br>  比特流（Bits，物理层）</p>
+<p>中间信道：复杂</p>
+<p>收方：解封装</p>
+<p>对等实体</p>
+<h2 id="2-物理层"><a href="#2-物理层" class="headerlink" title="2. 物理层"></a>2. 物理层</h2><pre><code>物理层的功能：</code></pre>
+<p>主要功能：提供透明的比特流传输<br>注意：<br>1）封装好的数据以“0、1”比特流的形式进行传递，从一个地方搬到另一个地方；<br>2）物理层上的传输，从不关心比特流里面携带的信息，只关心比特流的正确搬运。</p>
+<p>四大特性：机械特性、电气特性、功能特性、规程特性</p>
+<pre><code>物理层上数据的传输：信号</code></pre>
+<p>信号：数据的电气或电磁表现，分为模拟信号和数字信号</p>
+<p>信号在信道/传输介质上传输<br>物理带宽：传输过程中振幅不会明显衰减的频率范围，单位：赫兹<br>数字带宽：单位时间内流经的信息总量</p>
+<p><strong>奈奎斯特定理：在无噪声信道中</strong>，当物理带宽为 B Hz，信号离散等级为V级，那么该信道能提供的最大传输速率（数字带宽）：<br>   <strong><em>最大传输速率 = 2Blog₂V（bps）</em></strong><br>任意一个信号通过一个物理带宽为 B 的低通滤波器只要进行没秒 2B 次的采样就可完全重构出被滤掉的信号，任何高于2B次的采样都毫无意义。</p>
+<p><strong>香农定理：在噪声信道中</strong>，如果物理带宽为 B Hz。信噪比为 S/N，那么最大的传输速率（数字带宽）：<br>   <strong><em>最大传输速率 = Blog₂(1 + S/N)（bps）</em></strong><br>很多情况下噪声用分贝（DB）表示：<br>   <em>分贝值 = 10log10（S/N）（dB)</em></p>
+<pre><code>传输介质</code></pre>
+<p>引导性（有线）、非传导性（无线）</p>
+<p><strong>同轴电缆</strong><br>  基带同轴电缆，50Ω，用于数字传输（屏蔽层为铜）<br>  宽带同轴电缆：75Ω，用于模拟传输（屏蔽层为铝）</p>
+<p><strong>双绞线</strong><br>  非屏蔽双绞线（<strong>UTP</strong>：Unshield Twisted Pair），最大传输距离100米，广泛用于局域网中<br>  屏蔽双绞线（STP，Shield Twisted Pair），相比UTP，STP增加了两层屏蔽层，分别位于每队线之外和全部4对线之外<br>  网屏式双绞线（ScTP，Screened Twisted Pair），在成本和抗干扰之间做了折中</p>
+<p>  直通线、交叉线</p>
+<p>  电力线</p>
+<p><strong>光纤</strong><br>  重量轻、损耗低、不受电磁辐射干扰、传输频带宽、通信容量大；昂贵、易断裂（光纤连接器、机械拼接、熔合）</p>
+<pre><code>复用技术</code></pre>
+<p><strong>1.1）频分多路复用FDM</strong><br>  在干线起点，信道的频谱被分成若干段（子带），每个用户占据一段来传输自己的信号；到了干线的终点，每个子带的信号，被单独分离出来给各个用户。<br>  <strong>正交FDM：Orthogonal FDM</strong><br>  没有保护带，且子带之间相互重叠，同样的干线可以承载更多的用户</p>
+<p><strong>1.2）波分多路复用WDM（Wavelength Division Multiplexing）</strong><br>  本质跟FDM一样，在光纤上复用信号；<br>  当相邻波长间隔非常接近，子信道的数目非常大，WDM变成了<strong>DWDM（Dense，密集波分多路复用）</strong></p>
+<p><strong>2）时分多路复用TDM（Time Division Multiplexing）</strong><br>  在时间上共享信道：将时间划分为非常短的时间片<br>  统计时分多路复用技STDM（Statistic TDM），动态分配信道</p>
+<p><strong>3）码分多路复用技术CDMA（Code Division Multiple Access）</strong><br>  一种扩展频谱技术。<br>  VDMA允许每个站利用整个频段发送信号，而且没有任何时间限制。<br>  TDM—-许多人按顺序交谈<br>  FDM—-不同的人按照不同的语调同时进行交谈<br>  CDMA—-每对交谈者使用不同的语言<br>  CDMA的关键在于能够取出需要的信号同时拒绝所有其它的信号并把这些信号当做噪声。CDMA中，每个比特时间被细分为m个更短的时间间隔，这更短的时间间隔被称为<strong>码片</strong>，每个比特被分为64或128</p>
+<pre><code>调制技术</code></pre>
+<p>传输信号的方式：<br>基带传输、通带传输</p>
+<p>线路编码方法包括：<br>NRZ、NRZI、曼彻斯特编码、双极性编码</p>
+<p>基本调制方法：<br>条幅、调频、调相<br>工程应用：综合使用<br>信号星座</p>
+<p>数字带宽跟波特率、信号级别之间的关系：<br>C = B x log₂ n</p>
+<pre><code>公共交换电话网络</code></pre>
+<p>PSTN：Public Switched Telephone Network</p>
+<p>PSTN 由本地回路、干线和交换局三大部分构成；<br>调制解调器的调制 完成数字信号到模拟信号的转换<br>端局中codec的编码完成模拟信号到数字信号的转换<br>PSTN的核心是脉码调制PCM<br>T系列是同于北美和日本的一个时分复用系统，每125微秒传送一个T1复用帧</p>
+<pre><code>物理层设备</code></pre>
+<p>有源部件<br>无源部件<br>  收发器 Tansceiver = Transmitter + Receiver<br>  中继器 Reapter<br>  集线器 Hub（多端口的中继器）</p>
+<p>物理层（第一层）的设备都是傻瓜设备，不具备过滤流量等智能功能。<br>物理层设备的使用，增大了冲突域，降低了网络的性能。<br>现在，已经很少再使用中继器（光中继器除外）和集线器了。</p>
+<h2 id="3-数据链路层"><a href="#3-数据链路层" class="headerlink" title="3. 数据链路层"></a>3. 数据链路层</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">数据链路层概述</span><br></pre></td></tr></table></figure>
+
+<p>保证数据传输的有效、可靠<br>差错检测和控制<br>流量控制<br>  基于速率<br>  基于反馈</p>
+<p>帧 = 帧头 + 载荷 + 帧尾<br>成帧：将位bits流转成帧<br>  字符计数法成帧（很少用）<br>  字节填充的标志字节法<br>  比特填充的标志比特法<br>  物理层编码违例法</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">差错处理概述</span><br></pre></td></tr></table></figure>
+
+<p>差错类型：单个错误、突发错误<br>差错的处理：纠错码、检错码<br>海明距离（Hamming Distance）<br>        码字：包含数据位和校验位的n位单元。<br>        两个码字（codeword）的海明距离：两个码字之间不同位的数目。异或的结果中，1的个数。<br>海明距离决定了能够纠错或检错的位数</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">纠1位错的海明码</span><br></pre></td></tr></table></figure>
+
+<p>纠1位错需要的冗余位跟数据位的关系是<br>（m + r + 1）≤ 2^r<br>纠1位错的海明码的基本方法是怎样的？<br>发送方：根据校验集合填充校验码<br>接收方：根据校验集合判定校验位是否出错，出错的位编号累加到累加器上，所有的校验位都检查完成后，通过读取累加器的值来确定码字中出错的那一位的编号。</p>
+<h2 id="4-介质访问控制子层"><a href="#4-介质访问控制子层" class="headerlink" title="4. 介质访问控制子层"></a>4. 介质访问控制子层</h2><h2 id="5-网络层"><a href="#5-网络层" class="headerlink" title="5. 网络层"></a>5. 网络层</h2><h2 id="6-传输层"><a href="#6-传输层" class="headerlink" title="6. 传输层"></a>6. 传输层</h2><h2 id="7-应用层"><a href="#7-应用层" class="headerlink" title="7. 应用层"></a>7. 应用层</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"></span><br></pre></td></tr></table></figure>
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/07/16/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" data-id="ckdlqfk0t000xbcul5u3a8guy" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/07/16/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" data-id="ckds2q1n7000xjsulafah249q" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%B0%8F%E7%99%BD%E5%9F%BA%E7%A1%80/" rel="tag">小白基础</a></li></ul>
