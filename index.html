@@ -64,6 +64,86 @@
       <div class="outer">
         <section id="main">
   
+    <article id="android-SDK安装" class="article article-type-android" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/08/15/SDK%E5%AE%89%E8%A3%85/" class="article-date">
+  <time datetime="2020-08-15T02:19:12.000Z" itemprop="datePublished">2020-08-15</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/08/15/SDK%E5%AE%89%E8%A3%85/">Android SDK安装</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><p>在Windows下利用Eclipse开发Android程序：</p>
+<p>​    JDK 安装</p>
+<p>​    Android SDK 安装</p>
+<p>​    配置Eclipse</p>
+<h2 id="JDK安装"><a href="#JDK安装" class="headerlink" title="JDK安装"></a>JDK安装</h2><p>这边推荐安装jdk8，目前最新的长期支持版本是jdk11，但是在安装Android SDK时，可能会出问题。<br>    可以去<a target="_blank" rel="noopener" href="https://repo.huaweicloud.com/java/jdk/%E4%B8%8B%E8%BD%BD%EF%BC%8C%E9%95%9C%E5%83%8F%E6%AF%94%E8%BE%83%E5%BF%AB">https://repo.huaweicloud.com/java/jdk/下载，镜像比较快</a><br>安装好之后记得安装的目录，去环境变量里配置好。</p>
+<h2 id="Android-SDK"><a href="#Android-SDK" class="headerlink" title="Android SDK"></a>Android SDK</h2><p>开发Android程序要用的，官网貌似被墙了，<br>    <a target="_blank" rel="noopener" href="http://tools.android-studio.org/index.php/sdk%E4%B8%AD%E4%B8%8B%E8%BD%BDtools%E8%B5%84%E6%BA%90">http://tools.android-studio.org/index.php/sdk中下载tools资源</a><br>    下载安装版，可以测出是否安装了JDK，（jdk11被显示版本低，就很奇怪，换成jdk8就好了）<br>    安装好之后打开SDK Manager，安装默认的包就可以，记得Extras里选上 最后一个 Intel x86 Emulator···这个；官网安装，会有点慢，也有可能安装失败，如果出现，可以再搜一下教程，手动安装。</p>
+<p>AVD：Android 虚拟机<br>    这里会提示你配置SDK的系统环境变量。<br>    如果提示缺少kernel-qemu。可以将你创建的avd里选择D:\Android\android-sdk\system-images\android-29对应的目录下去将kernel-ranchu-64改名。</p>
+<h2 id="Eclipse-ADT"><a href="#Eclipse-ADT" class="headerlink" title="Eclipse ADT"></a>Eclipse ADT</h2><p>adt：是一个插件，可以提前下载好包<br>    开启eclipse，Help - Install New Software，安装好adt之后，Window - Reference - Android ，至此差不多了。<br>    开启AVD Manager，如果显示黑屏，可以将Android SDK中改为5.1.1版本（可以在SDK Manager中去下载），版本过高可能会无法显示。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2020/08/15/SDK%E5%AE%89%E8%A3%85/" data-id="ckdv2ilk70001wkul7i6j9lgn" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-剑指offer习题九（41-45）" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/08/13/%E5%89%91%E6%8C%87offer%E4%B9%A0%E9%A2%98%E4%B9%9D%EF%BC%8841-45%EF%BC%89/" class="article-date">
+  <time datetime="2020-08-13T00:39:54.000Z" itemprop="datePublished">2020-08-13</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/08/13/%E5%89%91%E6%8C%87offer%E4%B9%A0%E9%A2%98%E4%B9%9D%EF%BC%8841-45%EF%BC%89/">剑指offer习题九（41-45）</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2020/08/13/%E5%89%91%E6%8C%87offer%E4%B9%A0%E9%A2%98%E4%B9%9D%EF%BC%8841-45%EF%BC%89/" data-id="ckdv2ilkj0009wkulh16g2e3x" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-剑指offer习题八（36-40）" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2020/08/08/%E5%89%91%E6%8C%87offer%E4%B9%A0%E9%A2%98%E5%85%AB%EF%BC%8836-40%EF%BC%89/" class="article-date">
@@ -90,7 +170,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/08/08/%E5%89%91%E6%8C%87offer%E4%B9%A0%E9%A2%98%E5%85%AB%EF%BC%8836-40%EF%BC%89/" data-id="ckds2q1mm000djsul7quf0jwu" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/08/08/%E5%89%91%E6%8C%87offer%E4%B9%A0%E9%A2%98%E5%85%AB%EF%BC%8836-40%EF%BC%89/" data-id="ckdv2ilkr000gwkul5r76hqwd" class="article-share-link">Share</a>
       
       
     </footer>
@@ -126,56 +206,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/08/05/%E5%89%91%E6%8C%87offer%E4%B9%A0%E9%A2%98%E4%B8%83%EF%BC%8831-35%EF%BC%89/" data-id="ckds2q1me0005jsul0p0sdnmi" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-hello-world" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2020/08/03/hello-world/" class="article-date">
-  <time datetime="2020-08-03T12:51:19.255Z" itemprop="datePublished">2020-08-03</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/08/03/hello-world/">Hello World</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>Welcome to <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a target="_blank" rel="noopener" href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/08/03/hello-world/" data-id="ckds2q1m50001jsul96ij9xun" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/08/05/%E5%89%91%E6%8C%87offer%E4%B9%A0%E9%A2%98%E4%B8%83%EF%BC%8831-35%EF%BC%89/" data-id="ckdv2ilkf0005wkula4sa2x0w" class="article-share-link">Share</a>
       
       
     </footer>
@@ -218,7 +249,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/07/29/%E5%89%91%E6%8C%87offer%E4%B9%A0%E9%A2%98%E5%85%AD%EF%BC%8826-30%EF%BC%89/" data-id="ckds2q1mr000gjsul8galfxkw" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/07/29/%E5%89%91%E6%8C%87offer%E4%B9%A0%E9%A2%98%E5%85%AD%EF%BC%8826-30%EF%BC%89/" data-id="ckdv2ilkt000iwkul2jm3enua" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JZ/" rel="tag">JZ</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/" rel="tag">java</a></li></ul>
@@ -263,7 +294,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/07/28/%E5%89%91%E6%8C%87offer%E4%B9%A0%E9%A2%98%E4%BA%94%EF%BC%8821-25%EF%BC%89/" data-id="ckds2q1mk000bjsulew9zh11x" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/07/28/%E5%89%91%E6%8C%87offer%E4%B9%A0%E9%A2%98%E4%BA%94%EF%BC%8821-25%EF%BC%89/" data-id="ckdv2ilkm000dwkulf1sw0jt7" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JZ/" rel="tag">JZ</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/" rel="tag">java</a></li></ul>
@@ -308,7 +339,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/07/27/%E5%89%91%E6%8C%87offer%E4%B9%A0%E9%A2%98%E5%9B%9B%EF%BC%8816-20%EF%BC%89/" data-id="ckds2q1mu000ijsulbzjndapl" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/07/27/%E5%89%91%E6%8C%87offer%E4%B9%A0%E9%A2%98%E5%9B%9B%EF%BC%8816-20%EF%BC%89/" data-id="ckdv2ilkv000lwkul24978e9v" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JZ/" rel="tag">JZ</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/" rel="tag">java</a></li></ul>
@@ -353,7 +384,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/07/25/%E5%89%91%E6%8C%87offer%E4%B9%A0%E9%A2%98%E4%B8%89%EF%BC%8811-15%EF%BC%89/" data-id="ckds2q1mh0008jsulas22hiks" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/07/25/%E5%89%91%E6%8C%87offer%E4%B9%A0%E9%A2%98%E4%B8%89%EF%BC%8811-15%EF%BC%89/" data-id="ckdv2ilki0008wkule5ui3ijp" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JZ/" rel="tag">JZ</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/" rel="tag">java</a></li></ul>
@@ -398,7 +429,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/07/20/%E5%89%91%E6%8C%87offer%E4%B9%A0%E9%A2%98%E4%BA%8C%EF%BC%886-10%EF%BC%89/" data-id="ckds2q1mi0009jsulehem1eyg" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/07/20/%E5%89%91%E6%8C%87offer%E4%B9%A0%E9%A2%98%E4%BA%8C%EF%BC%886-10%EF%BC%89/" data-id="ckdv2ilkl000bwkuldvh9dhz6" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JZ/" rel="tag">JZ</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/" rel="tag">java</a></li></ul>
@@ -444,55 +475,10 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/07/18/%E5%89%91%E6%8C%87offer%E4%B9%A0%E9%A2%98%E4%B8%80%EF%BC%881-5%EF%BC%89/" data-id="ckds2q1mc0004jsulhmm736yv" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/07/18/%E5%89%91%E6%8C%87offer%E4%B9%A0%E9%A2%98%E4%B8%80%EF%BC%881-5%EF%BC%89/" data-id="ckdv2ilkd0004wkulb2y04ch8" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JZ/" rel="tag">JZ</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/" rel="tag">java</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-java代码基础之输入输出" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2020/07/18/java%E4%BB%A3%E7%A0%81%E5%9F%BA%E7%A1%80%E4%B9%8B%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA/" class="article-date">
-  <time datetime="2020-07-18T01:27:31.000Z" itemprop="datePublished">2020-07-18</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/07/18/java%E4%BB%A3%E7%A0%81%E5%9F%BA%E7%A1%80%E4%B9%8B%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA/">java代码基础之输入输出</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <blockquote>
-<p>输入输出：<br>java中主要按照流stream的模式来实现输入输出。对数据流的主要操作都封装在java.io包装中。<br>输入语句，在牛客网上不用写这一部分。</p>
-</blockquote>
-        
-          <p class="article-more-link">
-            <a href="/2020/07/18/java%E4%BB%A3%E7%A0%81%E5%9F%BA%E7%A1%80%E4%B9%8B%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA/#more">Read More</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/07/18/java%E4%BB%A3%E7%A0%81%E5%9F%BA%E7%A1%80%E4%B9%8B%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA/" data-id="ckds2q1mb0003jsul1md77qkk" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/" rel="tag">java</a></li></ul>
 
     </footer>
   </div>
@@ -551,6 +537,14 @@
       <ul>
         
           <li>
+            <a href="/2020/08/15/SDK%E5%AE%89%E8%A3%85/">Android SDK安装</a>
+          </li>
+        
+          <li>
+            <a href="/2020/08/13/%E5%89%91%E6%8C%87offer%E4%B9%A0%E9%A2%98%E4%B9%9D%EF%BC%8841-45%EF%BC%89/">剑指offer习题九（41-45）</a>
+          </li>
+        
+          <li>
             <a href="/2020/08/08/%E5%89%91%E6%8C%87offer%E4%B9%A0%E9%A2%98%E5%85%AB%EF%BC%8836-40%EF%BC%89/">剑指offer习题八（36-40）</a>
           </li>
         
@@ -559,15 +553,7 @@
           </li>
         
           <li>
-            <a href="/2020/08/03/hello-world/">Hello World</a>
-          </li>
-        
-          <li>
             <a href="/2020/07/29/%E5%89%91%E6%8C%87offer%E4%B9%A0%E9%A2%98%E5%85%AD%EF%BC%8826-30%EF%BC%89/">剑指offer习题六（26-30）</a>
-          </li>
-        
-          <li>
-            <a href="/2020/07/28/%E5%89%91%E6%8C%87offer%E4%B9%A0%E9%A2%98%E4%BA%94%EF%BC%8821-25%EF%BC%89/">剑指offer习题五（21-25）</a>
           </li>
         
       </ul>

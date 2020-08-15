@@ -15,7 +15,7 @@
 <meta property="og:description" content="Application layerTransport layerNetwork layerData Link layerPhysical layer五层参考模型：其实是将TCP&#x2F;IP四层参考模型的网络接入层进行了分割，用OSI七层参考模型的下两层来替代">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2020-07-16T09:12:41.000Z">
-<meta property="article:modified_time" content="2020-08-12T02:44:09.474Z">
+<meta property="article:modified_time" content="2020-08-14T08:47:34.240Z">
 <meta property="article:author" content="Sam Lu">
 <meta property="article:tag" content="小白基础">
 <meta name="twitter:card" content="summary">
@@ -155,11 +155,62 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">纠1位错的海明码</span><br></pre></td></tr></table></figure>
 
 <p>纠1位错需要的冗余位跟数据位的关系是<br>（m + r + 1）≤ 2^r<br>纠1位错的海明码的基本方法是怎样的？<br>发送方：根据校验集合填充校验码<br>接收方：根据校验集合判定校验位是否出错，出错的位编号累加到累加器上，所有的校验位都检查完成后，通过读取累加器的值来确定码字中出错的那一位的编号。</p>
-<h2 id="4-介质访问控制子层"><a href="#4-介质访问控制子层" class="headerlink" title="4. 介质访问控制子层"></a>4. 介质访问控制子层</h2><h2 id="5-网络层"><a href="#5-网络层" class="headerlink" title="5. 网络层"></a>5. 网络层</h2><h2 id="6-传输层"><a href="#6-传输层" class="headerlink" title="6. 传输层"></a>6. 传输层</h2><h2 id="7-应用层"><a href="#7-应用层" class="headerlink" title="7. 应用层"></a>7. 应用层</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"></span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">检错码</span><br></pre></td></tr></table></figure>
+
+<p>奇偶校验、互联网校验<br><strong>循环冗余检错码CRC</strong><br>   原理：k位的帧 = k-1 位的多项式<br>模2运算 等同于 异或运算</p>
+<p>CRC计算过程：<br>    信息码11011011101（11位）<br>    根据信息码得到多项式（M(x)=X的十次多项式<br>    已知生成多项式G(X)=X的多项式，可以得到一串码字</p>
+<p>​    M(X)*G(X)的最高次得到<strong>移位后的码字H</strong>，再不断对生成多项式的码字进行模2运算，得到最后的余数，<strong>H - 余数，即为编码后的码字</strong>。当这个码字（<strong>也就是CRC码</strong>）在接收端能被生成多项式的码字整除，则说明接收正确。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">基本数据链路协议</span><br></pre></td></tr></table></figure>
+
+<p><strong>协议1：无限制的单工协议</strong><br>        处理的是“完美”的传输环境—-“乌托邦”协议<br><strong>协议2：单工停–等协议</strong><br>        做简单的流控，防止接收方被数据所淹没<br><strong>协议3：有噪声信道的单工协议</strong><br>        解决噪声信道带来的错误，引出肯定确认技术</p>
+<p>​    PAR，AQR<br>提高传输效率：<br>​    全双工<br>​    捎带确认<br>​    批发数据</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">协议4：滑动窗口协议</span><br></pre></td></tr></table></figure>
+
+<p>滑窗技术可以批量收发数据，提高了信道利用率。<br>发送窗口对应着已经发送但还未被确认的帧。<br>    滑动条件：收到了帧的确认<br>接收窗口对应着期待接收的帧。<br>    滑动条件：收到了期待接收的帧。<br>窗口数的确认跟带宽-延迟积正相关。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">协议5：回退 n 帧</span><br></pre></td></tr></table></figure>
+
+<p>批发数据时，其中一帧出错，可以从出错帧开始重传，也可以只重传错误帧。<br>回退n帧，需要发送方付出更多的缓存代价。<br>    适合出错率较少的高速信道<br>回退n帧的窗口数：<br>    发送窗口：W ≤ MAX_SEQ<br>    接收窗口：W = 1</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">协议6：选择性重传</span><br></pre></td></tr></table></figure>
+
+<p>选择性重传需要接收方付出更多的缓存代价。<br>    适合出错率高的传输环境<br>选择性重传的窗口数：<br>    发送窗口：0 ≤ W ≤ （MAX_SEQ + 1）/ 2<br>    接收窗口：W ≤ （MAX_SEQ + 1）/ 2</p>
+<h2 id="4-介质访问控制子层"><a href="#4-介质访问控制子层" class="headerlink" title="4. 介质访问控制子层"></a>4. 介质访问控制子层</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">MAC子层</span><br></pre></td></tr></table></figure>
+
+<p>数据通信有三种方式：<br>    单播<br>    广播<br>    组播<br>局域网中主要采用在共享信道上的广播。<br>介质访问控制要解决：<br>    某一时刻由哪个工作站共享信道的问题。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ALOHA协议</span><br></pre></td></tr></table></figure>
+
+<p>纯ALOHA（Pure ALOHA）协议<br>分隙ALOHA（Slotted ALOHA）协议</p>
+<p>纯ALOHA中，一旦产生新帧，就立即发送，全然不顾是否有用户正在发送，所以发生冲突的可能伴随着发送的整个过程。<br>    冲突危险期：2t，信道利用率：18.4%<br>分隙ALOHA中，规定发送行为必须在时隙的开始，一旦在发送开始时没有冲突，则该帧将成功发送。<br>    冲突危险期：t，信道利用率：36.8%</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">CSMA协议</span><br></pre></td></tr></table></figure>
+
+<p>载波侦听多路访问协议（Carrier Sense Multiple Access）<br>    改进的ALOHA 协议<br>    分为持续式和非持续式两种</p>
+<p>CSMA/CD<br>        CSMA with Collision Detection<br>        先听后发，边发边听——半双工以太网中使用<br>冲突窗口：冲突危险期<br>        数值上等同于：信号在最远两个工作站的传输延迟的两倍</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">以太网概述</span><br></pre></td></tr></table></figure>
+
+<p>以太网是多路访问协议的实现：CSMA/CD<br>二进制指数回退算法，降低了再次冲突的可能性<br>以太网位于OSI模型的下两层；<br>经典以太网（3M-10Mbps，不太常用）<br>交换式以太网（10M，100M，1G，广泛使用）<br>TEEE802.3</p>
+<p>10Base2 === 10M 编码方式 200米 ，T=双绞线<br><strong>10BaseT</strong><br>百兆以太网<br>吉比特以太网</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">以太网帧格式</span><br></pre></td></tr></table></figure>
+
+<p>以太帧跟802.3帧有小小的区别。<br>802.3帧：<br>    帧起始–目的地址、源地址（MAC地址）–长度–数据–校验和</p>
+<p>IEEE802.3以太帧跟DIX以太网帧的主要差别是<strong>前导码</strong>和<strong>类型/长度字段</strong>。<br>通过查看类型/长度值<strong>是否大于0x600（1536）</strong>来判定是类型字段还是长度字段。<br>物理地址（MAC地址）由<strong>48位</strong>构成，其中前<strong>24位OUI</strong>，需要向IEEE申请。<br>MAC地址不可更改，<strong>全球唯一</strong>。<br>帧最长<strong>1518字节</strong>，最短<strong>64字节</strong>。（包括帧头帧尾，不含前导码）</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">二层交换的基本格式</span><br></pre></td></tr></table></figure>
+
+<p>交换机是网桥的现代名称。<br><strong>交换机（网桥）</strong>将不同的LAN段连接起来。<br><strong>MAC地址表</strong>是网桥通过<strong>逆向地址学习</strong>自动<strong>建立、更新</strong>和<strong>维护</strong>的<br>二层交换的基本原理是：（<strong>3选1</strong>）<br>    <strong>泛洪/扩散</strong><br>    <strong>转发</strong><br>    <strong>过滤</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">生成树协议</span><br></pre></td></tr></table></figure>
+
+<p>Spanning Tree Protocol<br>为了<strong>可靠性</strong>，采用<strong>冗余拓扑</strong>。<br>冗余造成<strong>环路</strong>，会产生<strong>多帧传送</strong>、<strong>广播风暴</strong>和<strong>MAC地址库不稳定</strong>等问题。<br>这些问题的根源就是有回路，STP就是打断环路，维持<strong>逻辑上的无环路</strong>。<br>STP可能产生<strong>非最优路径</strong>，付出了代价。<br>当逻辑STP树上的某点出故障了，<strong>非指定端口</strong>将会被重新启用。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">虚拟局域网</span><br></pre></td></tr></table></figure>
+
+<p><strong>VLAN</strong>是一组逻辑上的用户。<br>一个VLAN特性<strong>等同于</strong>一个物理LAN。<br>一个VLAN就是一个<strong>广播域</strong>。<br>有了VLAN，可使用二层交换机实现<strong>广播域的分割</strong>。<br><strong>帧标记法</strong>可以让帧穿过交换机的<strong>干线</strong>。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">二层设备</span><br></pre></td></tr></table></figure>
+
+<p>NIC网卡：Network Interface Card<br>    为主机提供介质访问<br>    MAC地址烧在网卡的ROM中<br>网桥<br>交换机：多端口的交换机</p>
+<p>网卡的主要功能包括命名、成帧、介质访问控制和再生信号等。<br>交换机的工作原理：泛洪/转发/丢弃（3选1）<br>通过逆向地址学习自动建立维护MAC表。<br>交换机的三种交换方式：<br>    存储转发<br>    直通交换<br>    无分片交换</p>
+<h2 id="5-网络层"><a href="#5-网络层" class="headerlink" title="5. 网络层"></a>5. 网络层</h2><h2 id="6-传输层"><a href="#6-传输层" class="headerlink" title="6. 传输层"></a>6. 传输层</h2><h2 id="7-应用层"><a href="#7-应用层" class="headerlink" title="7. 应用层"></a>7. 应用层</h2><p>会话层、表示层、应用层</p>
+
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/07/16/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" data-id="ckds2q1n7000xjsulafah249q" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/07/16/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" data-id="ckdv2ill4000zwkulbog99sgy" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%B0%8F%E7%99%BD%E5%9F%BA%E7%A1%80/" rel="tag">小白基础</a></li></ul>
@@ -233,6 +284,14 @@
       <ul>
         
           <li>
+            <a href="/2020/08/15/SDK%E5%AE%89%E8%A3%85/">Android SDK安装</a>
+          </li>
+        
+          <li>
+            <a href="/2020/08/13/%E5%89%91%E6%8C%87offer%E4%B9%A0%E9%A2%98%E4%B9%9D%EF%BC%8841-45%EF%BC%89/">剑指offer习题九（41-45）</a>
+          </li>
+        
+          <li>
             <a href="/2020/08/08/%E5%89%91%E6%8C%87offer%E4%B9%A0%E9%A2%98%E5%85%AB%EF%BC%8836-40%EF%BC%89/">剑指offer习题八（36-40）</a>
           </li>
         
@@ -241,15 +300,7 @@
           </li>
         
           <li>
-            <a href="/2020/08/03/hello-world/">Hello World</a>
-          </li>
-        
-          <li>
             <a href="/2020/07/29/%E5%89%91%E6%8C%87offer%E4%B9%A0%E9%A2%98%E5%85%AD%EF%BC%8826-30%EF%BC%89/">剑指offer习题六（26-30）</a>
-          </li>
-        
-          <li>
-            <a href="/2020/07/28/%E5%89%91%E6%8C%87offer%E4%B9%A0%E9%A2%98%E4%BA%94%EF%BC%8821-25%EF%BC%89/">剑指offer习题五（21-25）</a>
           </li>
         
       </ul>
