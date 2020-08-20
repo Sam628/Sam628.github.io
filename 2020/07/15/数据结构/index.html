@@ -16,7 +16,7 @@
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="file:///C:/Users/aloha/AppData/Roaming/Tencent/Users/1641704131/QQ/WinTemp/RichOle/2~FA4$C[N%7DJUN(NHFQ)QL1G.png">
 <meta property="article:published_time" content="2020-07-14T23:11:43.000Z">
-<meta property="article:modified_time" content="2020-08-14T09:59:50.070Z">
+<meta property="article:modified_time" content="2020-08-17T02:02:47.068Z">
 <meta property="article:author" content="Sam Lu">
 <meta property="article:tag" content="小白基础">
 <meta property="article:tag" content="java">
@@ -110,7 +110,7 @@
 <p>利用 递归（work 、right）找出算法本质 + 迭代（fast）的形式= 实现动态规划<br><strong>fib(n) = fib(n-1) + fib(n-2)</strong><br>自顶向下递归，自底而上迭代</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">f &#x3D; 0; g &#x3D; 1; &#x2F;&#x2F;fib(0), fib(1)</span><br><span class="line">while(0 &lt; n--)&#123;</span><br><span class="line">    g &#x3D; g + f;</span><br><span class="line">    f &#x3D; g - f; &#x2F;&#x2F;f&#x3D;原来的g</span><br><span class="line">&#125;</span><br><span class="line">return g;</span><br></pre></td></tr></table></figure>
 <p><strong>最长公共子序列LCS</strong><br>对于序列A[0, n]和B[0, m]，LCS(A, B)无非三种情况<br>0）若n = -1 或 m = -1，则取作空序列（””）//递归基<br>1）若A[n] = ‘X’ = B[m]，则取作LCS(A[0, N), B[0, m)) + ‘X’ //减而治之<br>2）A[n] ≠ B[m]，则在LCS(A[0, n], B[0, m)) 与LCS(A[0, n), B[0, m]) 中取更长者  //分而治之</p>
-<h2 id="2-向量Vector"><a href="#2-向量Vector" class="headerlink" title="2. 向量Vector"></a>2. 向量Vector</h2><pre><code>1 - 接口与实现</code></pre>
+<h2 id="2-向量-Vector"><a href="#2-向量-Vector" class="headerlink" title="2. 向量 Vector"></a>2. 向量 Vector</h2><pre><code>1 - 接口与实现</code></pre>
 <p><strong>序列Sequence：向量Vector、 列表List</strong></p>
 <p>抽象数据类型 = 数据模型 + 定义在该模型上的一组操作<br>数据结构 = 基于某种特定语言，实现ADT的一整套算法<br>  <strong>数据结构</strong>涉及到：具体实现、多种实现、内部的表示与实现、完整的算法、与复杂度密切相关、要考虑数据的具体存储机制。</p>
 <p><strong>向量ADT</strong>（抽象数据类型）：<br>i）从数组到向量，向量是数组的抽象与泛化，有一组元素按线性次序封装而成；<br>i）各元素与[0, n)内的秩（rank）一一对应；<br>i）元素的类型不限于基本类型；<br>i）操作、管理维护更加简化、统一与安全；<br>i）可更为便捷地参与复杂数据结构的定制与实现。</p>
@@ -172,7 +172,7 @@
 <p>不使用Vector可以避免元素存储位置的移动</p>
 <p>平均复杂度O(n²)</p>
 <p>逆序对：inversion 左大右小</p>
-<h2 id="4-栈与队列"><a href="#4-栈与队列" class="headerlink" title="4. 栈与队列"></a>4. 栈与队列</h2><pre><code>1 - 栈接口与实现</code></pre>
+<h2 id="4-栈-Stack与队列-Queue"><a href="#4-栈-Stack与队列-Queue" class="headerlink" title="4. 栈 Stack与队列 Queue"></a>4. 栈 Stack与队列 Queue</h2><pre><code>1 - 栈接口与实现</code></pre>
 <p>栈：Stack<br>top栈顶，先进后出<br>主要接口（方法）：<br>    push()：插入元素到栈顶<br>    pop()：返回并删除顶部top元素<br>    empty()：<br>栈既然属于序列的特例，故可直接基于向量或列表派生。<br>    在向量末端进行，复杂度O(1)</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">2 - 栈应用：进制转换</span><br></pre></td></tr></table></figure>
 
@@ -190,24 +190,80 @@
 <p>思考：可以用计数器表示栈的规模<br>以上思路及算法，可<strong>便捷地推广至多种括号并存</strong>的情况，这个时候不能使用多个计数器。<br>甚至，只需约定“括号”的<strong>通用格式</strong>，而不必事先固定括号的类型与数目。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">4 - 栈应用：栈混洗</span><br></pre></td></tr></table></figure>
 
-
+<p>stack permutation<br>同一输入序列，可能有多种栈混洗；SP(n) ≤ n!<br>catalan(n) = (2n)! / ((n+1)! * n!)</p>
+<p>输入序列的任一排列不一定是n的栈混洗<br>    i，j，k 为升序排列，k，i，j一定不是栈混洗</p>
+<p>O(n)算法：直接借助栈A、B和S，模拟混洗过程A–S–B<br>    每次S.pop()之前，检测S是否已空；或需弹出的元素在S 中，却非顶元素</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">comp</span><span class="params">(<span class="keyword">int</span> in[], <span class="keyword">int</span> out[])</span></span>&#123;</span><br><span class="line">    Stack&lt;<span class="keyword">int</span>&gt; A;</span><br><span class="line">    Stack&lt;<span class="keyword">int</span>&gt; S;</span><br><span class="line">    Stack&lt;<span class="keyword">int</span>&gt; B;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=in.length<span class="number">-1</span>; i&gt;=<span class="number">0</span>; i--)&#123;</span><br><span class="line">        A.push(<span class="keyword">int</span>[i]);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">int</span> j = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">while</span>(!A.empty())&#123;</span><br><span class="line">        S.push(A.pop());</span><br><span class="line">        <span class="keyword">if</span>(out[j] == S.top() &amp;&amp; !S.empty())&#123;</span><br><span class="line">            B.push(S.pop());</span><br><span class="line">            j++;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span>(S.empty())</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 
 
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">5 - 栈应用：中缀表达式求值</span><br></pre></td></tr></table></figure>
 
-
-
-
-
+<p>给定<strong>语法</strong>正确的算术表达式，计算与之对应的数值。<br><strong>操作符栈</strong>、<strong>操作数栈</strong><br>    根据操作符的优先级，决定是进栈还是取出操作数进行计算<br>    注意多位数字的存储</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">6 - 栈应用：逆波兰表达式</span><br></pre></td></tr></table></figure>
 
-
-
-
-
+<p>RPN（Reverse Polish Notation）<br>没有括号来指定优先级<br>    0  ！0 + 2  3  ！4  -  5  ^  -  67  *  -  8  -  9  +<br><strong>从中缀表达式转换成RPN</strong><br>    1）用括号显示地表示优先级<br>    2）将运算符移到对应的右括号后<br>    3）抹去所有括号<br>    4）稍事整理，即得RPN</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">7 - 队列接口与实现</span><br></pre></td></tr></table></figure>
 
+<p>与栈Stack不同，只有在栈顶进出<br>队列Queue也是受限的序列：<br>    只允许在<strong>队尾</strong>进行插入（查询）：enqueue() + rear()<br>    只能在<strong>队头</strong>删除（查询）：dequeue() + front()</p>
+<p>队列既然属于序列的特列，故亦可直接基于向量或列表派生    </p>
+<h2 id="5-二叉树"><a href="#5-二叉树" class="headerlink" title="5.  二叉树"></a>5.  二叉树</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">1 - 树</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">2 - 树的表示</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">3 - 二叉树</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">二叉树实现</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">先序遍历</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">中序遍历</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">层次遍历</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">重构</span><br></pre></td></tr></table></figure>
 
 
 
@@ -218,10 +274,16 @@
 
 
 
+
+
+
+
+
+<h2 id="6-图"><a href="#6-图" class="headerlink" title="6.  图"></a>6.  图</h2><h2 id="7-二叉搜索树"><a href="#7-二叉搜索树" class="headerlink" title="7.  二叉搜索树"></a>7.  二叉搜索树</h2><h2 id="8-高级搜索树"><a href="#8-高级搜索树" class="headerlink" title="8.  高级搜索树"></a>8.  高级搜索树</h2><h2 id="9-词典"><a href="#9-词典" class="headerlink" title="9.  词典"></a>9.  词典</h2><h2 id="10-优先级队列"><a href="#10-优先级队列" class="headerlink" title="10.  优先级队列"></a>10.  优先级队列</h2><h2 id="11-串"><a href="#11-串" class="headerlink" title="11.  串"></a>11.  串</h2><h2 id="12-排序"><a href="#12-排序" class="headerlink" title="12.  排序"></a>12.  排序</h2>
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/07/15/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" data-id="ckdv2ill2000wwkul8msu9t14" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/07/15/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" data-id="cke28vedh000wk0ulbmxa6lw1" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/" rel="tag">java</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%B0%8F%E7%99%BD%E5%9F%BA%E7%A1%80/" rel="tag">小白基础</a></li></ul>

@@ -15,7 +15,7 @@
 <meta property="og:description" content="Application layerTransport layerNetwork layerData Link layerPhysical layer五层参考模型：其实是将TCP&#x2F;IP四层参考模型的网络接入层进行了分割，用OSI七层参考模型的下两层来替代">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2020-07-16T09:12:41.000Z">
-<meta property="article:modified_time" content="2020-08-14T08:47:34.240Z">
+<meta property="article:modified_time" content="2020-08-20T03:25:23.546Z">
 <meta property="article:author" content="Sam Lu">
 <meta property="article:tag" content="小白基础">
 <meta name="twitter:card" content="summary">
@@ -205,12 +205,215 @@
 
 <p>NIC网卡：Network Interface Card<br>    为主机提供介质访问<br>    MAC地址烧在网卡的ROM中<br>网桥<br>交换机：多端口的交换机</p>
 <p>网卡的主要功能包括命名、成帧、介质访问控制和再生信号等。<br>交换机的工作原理：泛洪/转发/丢弃（3选1）<br>通过逆向地址学习自动建立维护MAC表。<br>交换机的三种交换方式：<br>    存储转发<br>    直通交换<br>    无分片交换</p>
-<h2 id="5-网络层"><a href="#5-网络层" class="headerlink" title="5. 网络层"></a>5. 网络层</h2><h2 id="6-传输层"><a href="#6-传输层" class="headerlink" title="6. 传输层"></a>6. 传输层</h2><h2 id="7-应用层"><a href="#7-应用层" class="headerlink" title="7. 应用层"></a>7. 应用层</h2><p>会话层、表示层、应用层</p>
+<h2 id="5-网络层"><a href="#5-网络层" class="headerlink" title="5. 网络层"></a>5. 网络层</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">引言</span><br></pre></td></tr></table></figure>
+
+<p>IP协议：IP地址（定位目的机），IP分组（解决信息的封装），IPv6（新一代的IP协议）<br>路由选择协议：距离适量路由选择协议（RIP）、链路状态路由选择协议（OSPF）<br>其它：ARP，ICMP，CIDR，NAT，···</p>
+<p>网络层的内容分为：路由、被路由和其它</p>
+<p>网络层利用下层的服务为它的上一层提供服务</p>
+<p>源机到目的机的数据发送：<br>    数据报网络：无连接的服务<br>    虚电路网络：有连接的服务</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">IP地址</span><br></pre></td></tr></table></figure>
+
+<p>IP协议 Internet Protocol，互联网协议。<br>IP的任务：<strong>提供一种尽力而为</strong>地把数据从源端传输到接收方的方法。</p>
+<p>IP地址用来标识源机和目的机</p>
+<p>被路由的协议<br>    IP地址：由32位二进制表示，提供约2^32≈43亿个地址；<br>    IP地址具有层次结构，<strong>网络部分</strong>，<strong>主机部分</strong><br>        A类地址，前八位表示网络，首位0固定，0 - 127，大型网络，主机数多<br>        B类地址，前16位表示网络，首两位10固定，128 - 191，中型网络<br>        C类网络，前3字节标识网路，首3位110固定，192 - 223，小型网络，主机数少</p>
+<p>保留的IP地址：<br>        D类，1110，组播<br>        E类，11110，科研<br>        全零地址：0.0.0.0<br>        泛洪广播：255.255.255.255<br>        广播地址：主机位全为1<br>        网络地址：主机位全为0<br>        环回地址：127.X.X.X（127.0.0.1）<br>        不可用地址：169.254.0.0</p>
+<p>IP地址的分配：ICANN（负责IP地址和域名的分配）</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">子网规划</span><br></pre></td></tr></table></figure>
+
+<p>主/边界路由器<br>子网掩码：一种了解网络规模的机制 、/8表示网络位数</p>
+<p>​    A类：255.0.0.0 /8    B类：255.255.0.0 /16    C类：255.255.255.0 /24</p>
+<p>路由器执行按位“与”来确定目的网络地址，目的地址&amp;255.255.255.0 == 得到目的地址属于的子网</p>
+<p>​    从主机位借位构建子网位：网络 + 子网 + 主机<br>​        从高位开始借，至少保留2位主机位</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">IP寻址</span><br></pre></td></tr></table></figure>
+
+<p><strong>IP寻址</strong>：根据目的IP地址，找到<strong>目的网络</strong>的过程，主要设备是路由器<br>    网络层，点分十进制<br>    一个路由器被称为一跳 hop<br><strong>MAC寻址</strong>：根据目的MAC地址，找到<strong>目的机</strong>的过程，主要设备是交换机<br>    数据链路层，十六进制</p>
+<p>IP寻址过程：<br>    打开分组<br>    定网络，查路由<br>    重新封装，转发</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">IP分组</span><br></pre></td></tr></table></figure>
+
+<p>报头：<br>数据<br>IP分组的重要字段：<br>    头部长度、总长度<br>    TTL<br>    用户协议<br>    目的IP<br>报文抓取和分析工具：WireShark</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">什么是IPv6</span><br></pre></td></tr></table></figure>
+
+<p>私人地址的使用：端–NAT–端<br>IPv6<br>    1990年，IETF开始着手新版本的IP协议<br>    主要目标是：<br>        支持几十亿台主机<br>        缩减路由表规模<br>        简化协议，让路由器可以更快地处理分组<br>        提供比IPv4更好的安全性<br>        更加关注服务类型（尤其是实时数据）<br>        允许通过指定范围来支持组播传输<br>        允许主机在不改变地址的情况下能够漫游<br>        允许协议具有扩展性<br>        允许新老协议共存多年</p>
+<p>IPv4存在 <strong>地址危机、端到端模式受到破坏、配置复杂、安全、QoS</strong>等问题</p>
+<p>设计IPv6，试图来解决这些问题</p>
+<p>IPv6在中国发展研究、部署了很多年，相信将逐步过渡到新的协议</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">IPv6地址</span><br></pre></td></tr></table></figure>
+
+<p>局域网段、链路、子网、互联网、邻节点</p>
+<p>IPv6最显著变化—地址空间<br>2^128 = 3.4 x 10^38 = 340涧（1涧 = 10^35）</p>
+<p>IPv6地址采用 <strong>冒分十六进制</strong> 表示<br>    128位分为8个16位组，用冒号隔开；每个16位组转换成对应的4位十六进制数表示，如：FE80<br>    地址前缀长度用“/xx”的形式放到地址的后面，如：1::1/64，表示网络前缀64位<br>注意：同一个地址可以有不同的表示形式</p>
+<p><strong>IPv6地址分类</strong><br>    单播地址、组播地址、任播地址</p>
+<p>特殊地址</p>
+<p><strong>链路本地地址</strong>：<br>    可由 FE80::/64 的高64位和 EUI-64的InterfaceID的低64位构成</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">IPv6分组</span><br></pre></td></tr></table></figure>
+
+<p>基本头 + 扩展头（可选，6种） + 数据段（TCP/UDP等）</p>
+<p>IPv6分组由基本头部、扩展头部和载荷三部分构成，下一个头（Next Header）字段描绘了三者间的关系</p>
+<p>相比IPv4分组，IPv6分组的头部字段精简了，但是头部总长度并没有减少</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">IPv6过渡技术</span><br></pre></td></tr></table></figure>
+
+<p>双协议栈</p>
+<p>隧道</p>
+<p>地址转换技术</p>
+<p>从IPv4升级到IPv6不是一蹴而就的，而是一个漫长的过程。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">路由从何而来</span><br></pre></td></tr></table></figure>
+
+<p>路由表的样子：</p>
+<table>
+<thead>
+<tr>
+<th align="center">目的网络/子网掩码</th>
+<th align="center">路径代价</th>
+<th align="center">下一跳（网关）</th>
+<th align="center">转出接口</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">202.112.18.0/24</td>
+<td align="center">5</td>
+<td align="center">192.168.1.1</td>
+<td align="center">Fe0/0</td>
+</tr>
+<tr>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+</tbody></table>
+<p>直通路由<br>静态路由<br>动态路由<br>    网络大、变化大时，不再适用静态路由。<br>    动态路由协议产生、更新和维护动态路由。<br>常见的路径量度：调数、带宽</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">距离矢量路由选择协议</span><br></pre></td></tr></table></figure>
+
+<p>Distance Vector，简称DV<br>DV的工作原理：<br>    维护、交换、更新<br>优点：简单<br>缺点：收敛慢、计数到无穷……</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">路由信息协议</span><br></pre></td></tr></table></figure>
+
+<p>Route Information Protocol，也叫 路由选择信息协议<br>采用<strong>跳数</strong>作为代价，默认超过<strong>15跳</strong>认为不可达<br>    router 启动rip<br>    network 设置地址</p>
+<p>RIP的主要工作原理<br>    维护、交换、更新<br>RIP的优点：简单<br>RIP采用的量度是跳数，不尽合理</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">RIP为何衰落</span><br></pre></td></tr></table></figure>
+
+<p>RIP的主要问题：<br>    无穷计数，产生路由环<br>解决的办法：<br>    定义路径代价的最大数<br>    水平分割、毒性逆转、抑制定时器等<br>RIP问题产生的根源：<br>    站得不高、看的不远</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">链路状态路由选择LS</span><br></pre></td></tr></table></figure>
+
+<p>Link State Routing<br><strong>发现</strong>    它的邻居节点们，了解它们的网络地址<br><strong>设置</strong>    到它的每个邻居的成本度量<br><strong>构造</strong>    一个分组LSP（Link State Packet），包含它所了解到的上述所有信息<br><strong>发送</strong>    这个分组给所有其他的路由器<br><strong>计算</strong>    基于完整的网络图，计算到每个目标的最短路径</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">单区域OSPF</span><br></pre></td></tr></table></figure>
+
+<p><strong>开放的最短路径优先    Open Shortest Path First</strong><br>链路状态路由协议的一个实例</p>
+<p>OSPF是<strong>内部网关协议</strong>（IGP）中性能最优、应用最广的一个协议</p>
+<p>重要术语：<br>    Router ID：32位，自治系统内唯一<br>    协议号：89<br>    TTL=1：通常，OSPF只传给邻居路由器</p>
+<p>OSPF使用的代价是带宽，计算时用10^8/带宽</p>
+<p>OSPF数据包有<strong>5种</strong>类型<br>    Hello<br>    数据库描述包DD<br>    链路状态请求LSR<br>    链路状态更新LSU<br>    链路状态确认LSAck</p>
+<p>建立<strong>全毗邻</strong>关系<br>    <strong>同步</strong>链路状态数据库</p>
+<p>DR 选举制、终身制、继承制<br>    选举DR可以<strong>减少同步</strong>次数</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">无类域间路由CIDR</span><br></pre></td></tr></table></figure>
+
+<p>IP主要面临两个问题：<br>    1）分类造成了数百万个地址浪费<br>        A类地址网络：16M个地址（太大）<br>        C类地址网络：256个地址（太小）<br>        <strong>B类</strong>地址网络：65536个地址（够用）<br>    2）路由表膨胀<br>        早期网络数不多，现在网络数超过百万</p>
+<p>Classless Inter Domain Routing<br>    分配地址方法：<strong>按需分配</strong>；遏制了IP地址枯竭的趋势<br>    地址块<br>    控制、缩减了路由表的规模<br>        聚合结果：<strong>超网</strong>（SuperNet）；聚合跟之前的子网规划是相反的行为<br>        聚合的<strong>前提</strong>条件：子网构成的地址空间是连续的，下一跳相同<br>        聚合的另一个好处：隔离了<strong>路由翻动</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">网络地址翻译NAT</span><br></pre></td></tr></table></figure>
+
+<p>NAT    PAT<br>NAT转换器（NAT Box）</p>
+<p>NAT/PAT优点：<br>    <strong>节省</strong>了公有IP地址<br>    内部私网访问外网的<strong>灵活性</strong><br>    保密性、<strong>安全性</strong><br>缺点：<br>    <strong>影响</strong>部分协议和应用的通信<br>    增加了<strong>网络延时</strong><br>    NAT转换器可能成为<strong>网络的瓶颈</strong><br>    影响<strong>路由追踪工具</strong>的使用</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">互联网控制消息协议ICMP</span><br></pre></td></tr></table></figure>
+
+<p>Internet Control Message Protocol<br>    向源报告差错<br>    测试网络：ping、tracert</p>
+<p>ICMP消息<strong>不生成自己的ICMP</strong>消息报告</p>
+<p>将ICMP头标和数据装载在IP数据段</p>
+<p><strong>ping</strong>时，源机将向目的站点发送一个<strong>ICMP回声请求</strong>报文，目的站点接收到，必须向源站点发回一个<strong>ICMP回声应答</strong>报文。<br>    源站点收到应答报文，则判断目的站点是可达的，否则为不可达</p>
+<p><strong>tracert</strong>：最多可以trace30跳，找出途径的路由器</p>
+<p>PMTU：<strong>Path MTU</strong>（Maximum Transmission Unit）最大传输单元</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">地址解析协议ARP</span><br></pre></td></tr></table></figure>
+
+<p>Address Resolution Protocol<br>    运行在局域网中，将IP地址映射到MAC地址</p>
+<p>当一台主机给对方发消息，只知道对方的IP地址，却不知道对方的MAC地址，这时就要用到<strong>ARP</strong><br>为了优化ARP工作，动<strong>态建立、更新和维护</strong>ARP表：<br>    应答<br>    ARP请求中的源IP/MAC地址信息<br>    免费ARP<br>    周期性删除过时信息<br>远程主机的MAC地址解析，需要用到<strong>默认网关</strong><br>ARP动态更新存在<strong>安全隐患</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">拥塞控制</span><br></pre></td></tr></table></figure>
+
+<p>拥塞（Congestion）：<br>    当一个子网或子网的一部分出现太多分组的时候，网络的性能急剧下降</p>
+<p>拥塞控制的两类措施：<br>    开环<br>    闭环</p>
+<p>闭环：<br>    监视系统；传递拥塞信号；调整运行，控制拥塞</p>
+<p>拥塞的根源是 <strong>负载大过资源</strong>。拥塞控制就是<strong>扭转</strong>这个不等式<br><strong>抑制分组</strong>生效时间慢，<strong>逐跳抑制</strong>可以快速缓解拥塞点压力<br><strong>载荷脱落</strong>是见效快的粗暴方法，可根据应用选择不同的脱落策略<br><strong>随机早期检测</strong>可以防患于未然</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">流量整形</span><br></pre></td></tr></table></figure>
+
+<p>调节数据传输的平均速率（和突发数据流）<br>流量整形算法：<br>    漏桶（leaky bucket）<br>    令牌桶（token bucket）</p>
+<p>漏桶算法可让一个不稳定的流整为一个稳定的流<br>    无法突发<br>    桶满时丢掉的是<strong>分组</strong><br>令牌桶可以<strong>累计</strong>突发数据的令牌，允许有上限的突发。所以，有时候在令牌桶之后再串接一只漏桶<br>    桶满时丢掉的是<strong>令牌</strong></p>
+<h2 id="6-传输层"><a href="#6-传输层" class="headerlink" title="6. 传输层"></a>6. 传输层</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">传输层概述</span><br></pre></td></tr></table></figure>
+
+<p>传输实体<br><strong>网络层</strong>负责把数据从源机送达到目的机（<strong>Host to Host</strong>）<br><strong>传输层</strong>数据送达到具体的应用进程（<strong>End to End</strong>）</p>
+<p>数据段（TPDU，传输层协议数据单元）<br>TPDU（Transport Protocol Data Unit）是从传输实体发到对端传输实体的信息。有的教材叫TPDU为数据段（segment）<br>TPDUs作为数据（载荷）被封装在分组（packet）中，由网络层传输交换；<br>分组作为数据（载荷）被封装在帧（frames）中，由数据链路层传输交换；</p>
+<p>传输层主要有两个常用的协议：<br>    用户数据协议UDP（User Datagram Protocol）<br>    传输控制协议TCP（Transmission Control Protocol）</p>
+<p>传输层提供高效、可靠的数据传输服务</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">用户数据协议 UDP</span><br></pre></td></tr></table></figure>
+
+<p>UDP是传输层上的一个<strong>轻量级</strong>协议，提供<strong>高效</strong>的<strong>端到端</strong>的<strong>数据段</strong>传输<br>UDP数据段包括<strong>头部</strong>和<strong>载荷</strong>两部分，头部有<strong>4个</strong>字段，共<strong>8个</strong>字节<br>UDP<strong>不提供</strong>数据传输的可靠保证</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">通信模型</span><br></pre></td></tr></table></figure>
+
+<p>端点就是套接字Socket<br>    （IP，Port）<br>通信五元组：<br>    Source IP、Source port<br>    TCP/UDP<br>    Destination IP、Deationation port</p>
+<p>通信模型：通信三元组<br>    源端点、协议、目的端点</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">TCP数据段</span><br></pre></td></tr></table></figure>
+
+<p>TCP是一个复杂的传输层协议，负责将TCP数据段可靠地送达目的端</p>
+<p>相比UDP段头，TCP段头非常复杂，包含14个字段<br>    源端口、目的端口（通信五元组中的两个）<br>    序列号：为每个字节编号<br>    确认号：ack控制位置位才有效<br>    六个控制位：用于连接建立、拆除、异常处理等<br>    窗口尺寸：用于流控，以免收方被数据淹没</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">TCP三次握手建立连接</span><br></pre></td></tr></table></figure>
+
+<p>采用 <strong>三次握手</strong> 建立连接：<br>    一方（server）被动地等待一个进来的连接请求<br>    另一方（client）通过发送连接请求，设置一些参数<br>    服务器方回发确认应答<br>    应答到达请求方，请求方最后确认，连接建立</p>
+<p>1）SYN（SEQ = x），SYN = 1, ACK = 0</p>
+<p>2）SYN（SEQ = y，ACK = x + 1），SYN = 1, ACK = 1</p>
+<p>3）（SEQ = x + 1，ACK = y + 1），SYN =0, ACK = 1</p>
+<p>拒绝服务攻击DoS</p>
+<p>TCP数据段传送之前，一定要建立TCP连接<br>通过三次握手建立TCP连接，三次的控制号见上<br>三次握手建立连接是一个同步的过程，交换初始序列号，保证后续的每一个字节的可靠传输</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">TCP连接释放</span><br></pre></td></tr></table></figure>
+
+<p>​    任何一方没有数据要传送的时候，都可以发送一个FIN置位了的TCP数据段<br>​    当FIN被确认的时候，该方向的连接被关闭<br>​    当双向连接都关闭了的时候，连接释放</p>
+<p>DR（Disconnect Require）</p>
+<p><strong>四次握手</strong> 正常释放连接：<br>    1）主机A发送释放请求DR，启动定时器<br>    2）主机B回送确认ACK，到达主机A时，A –&gt; B连接释放<br>    3）主机B发送释放请求DR，启动定时器<br>    4）主机A回送确认ACK，到达主机B时，B –&gt; A连接释放</p>
+<p>TCP是<strong>全双工</strong>的，连接的释放必须是双向的<br>    FIN = 1<br><strong>半开放连接</strong>必须杀掉<br>定时器的作用很重要，超时将释放连接</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">TCP传输策略</span><br></pre></td></tr></table></figure>
+
+<p>TCP传输的是全双工的<strong>字节流</strong></p>
+<p>TCP适配双方的数据流量的方法是<br>    Window size（窗口尺寸，段头里的 WIN字段）</p>
+<p>TCP还需要效率：<br>    发方优化：<strong>Nagel算法</strong>（延迟发送）<br>    收方优化：<strong>Clark解决方案</strong>（傻瓜窗口综合症）</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">TCP拥塞控制</span><br></pre></td></tr></table></figure>
+
+<p>接受者窗口、拥塞窗口、阈值</p>
+<p>慢启动算法（Slow Start）</p>
+<p>TCP拥塞控制遵循分组守恒定律</p>
+<p>两种因素引发拥塞：<br>    接收方处理不过来，用窗口尺寸来度量<br>    通信子网中出现拥塞，用拥塞窗口（CWND）来度量</p>
+<p>处理拥塞的具体方法是使用窗口尺寸和拥塞窗口中小的那个来发送</p>
+<p>CWND通过慢启动方法尝试而来（通过<strong>阈值</strong>调节CWND尝试的粒度）</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">TCP定时器等</span><br></pre></td></tr></table></figure>
+
+<p>TCP中有很多定时器，管理定时器是一件重要的事情<br>    （重传定时器、持续定时器（解决死锁）、保活定时器等）<br>    肯定确认定时器，用来保证数据段的可靠传输<br>    持续定时器用来解除因<strong>更新窗口</strong>丢失引发的死锁</p>
+<p>TCP跟UDP有极大的不同，是一个<strong>重量级</strong>的传输层协议</p>
+<table>
+<thead>
+<tr>
+<th align="center">性能</th>
+<th align="center">TCP</th>
+<th align="center">UDP</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">可靠性</td>
+<td align="center">√</td>
+<td align="center">×</td>
+</tr>
+<tr>
+<td align="center">传输延迟来源</td>
+<td align="center">不确定</td>
+<td align="center">网络延迟</td>
+</tr>
+<tr>
+<td align="center">拥塞控制</td>
+<td align="center">√</td>
+<td align="center">×</td>
+</tr>
+</tbody></table>
+<p>TCP<br>    可靠传输方式<br>    可让应用程序简单化，程序员可以不必进行错误检查、修正等工作</p>
+<p>UDP<br>    为了降低对计算机资源的需求（<strong>DNS</strong>）<br>    应用程序本身已提供数据完整性的检查机制，无须依赖传输层的协议来保证<br>    应用程序传输的并非关键性的数据（<strong>路由器周期性的路由信息交换</strong>）<br>    一对多方式，必须使用UDP（TCP限于一对一的传送）</p>
+<h4 id="套接字编程"><a href="#套接字编程" class="headerlink" title="套接字编程"></a>套接字编程</h4><h2 id="7-应用层"><a href="#7-应用层" class="headerlink" title="7. 应用层"></a>7. 应用层</h2><p>会话层、表示层、应用层</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/07/16/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" data-id="ckdv2ill4000zwkulbog99sgy" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/07/16/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" data-id="cke28vee2001bk0ul0gtzgp35" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%B0%8F%E7%99%BD%E5%9F%BA%E7%A1%80/" rel="tag">小白基础</a></li></ul>
