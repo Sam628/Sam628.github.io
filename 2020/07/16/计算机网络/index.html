@@ -15,7 +15,7 @@
 <meta property="og:description" content="Application layerTransport layerNetwork layerData Link layerPhysical layer五层参考模型：其实是将TCP&#x2F;IP四层参考模型的网络接入层进行了分割，用OSI七层参考模型的下两层来替代">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2020-07-16T09:12:41.000Z">
-<meta property="article:modified_time" content="2020-08-20T03:25:23.546Z">
+<meta property="article:modified_time" content="2020-08-22T15:04:30.530Z">
 <meta property="article:author" content="Sam Lu">
 <meta property="article:tag" content="小白基础">
 <meta name="twitter:card" content="summary">
@@ -408,12 +408,51 @@
 </tbody></table>
 <p>TCP<br>    可靠传输方式<br>    可让应用程序简单化，程序员可以不必进行错误检查、修正等工作</p>
 <p>UDP<br>    为了降低对计算机资源的需求（<strong>DNS</strong>）<br>    应用程序本身已提供数据完整性的检查机制，无须依赖传输层的协议来保证<br>    应用程序传输的并非关键性的数据（<strong>路由器周期性的路由信息交换</strong>）<br>    一对多方式，必须使用UDP（TCP限于一对一的传送）</p>
-<h4 id="套接字编程"><a href="#套接字编程" class="headerlink" title="套接字编程"></a>套接字编程</h4><h2 id="7-应用层"><a href="#7-应用层" class="headerlink" title="7. 应用层"></a>7. 应用层</h2><p>会话层、表示层、应用层</p>
+<h4 id="套接字编程"><a href="#套接字编程" class="headerlink" title="套接字编程"></a>套接字编程</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">套接字的概念</span><br></pre></td></tr></table></figure>
+
+<p>套接字，也叫“套接口”。是<strong>操作系统内核中的一个数据结构</strong>，它是网络中的节点进行相互通信的门户。<strong>可以标识一个网络进程的ID</strong>。<br>套接字由IP地址和端口号组成。<br>例如，如网络中某一台计算机的IP为10.92.20.160，操作系统分配给计算机中某一应用程序进程的端口号为1500，则此<strong>10.92.20.160 1500</strong>就构成了一个套接口。</p>
+<p><em>套接字接口（socket interface）</em><br>    定义了网络上的各种操作（如生成套接字，发送/接收消息等）<br>    它是一种常用的进程之间通信机制，通过它不仅能实现本地机器上的进程之间的通信，而且通过网络能够在不同机器上的进程之间进行通信。</p>
+<p><em>常用的套接字接口：</em><br>    Linux/Unix：Berkerly Socket是重要的一套接口。<br>    Windows：Win Socket，也称winsock，与BS很类似的接口</p>
+<p><em>Socket的类型：</em><br>    流式socket（SOCK_STREAM）用于TCP通信<br>    数据报socket（SOCK_DGRAM）用于UDP通信<br>    原始socket（SOCK_RAW）用于新的网络协议实现的测试等</p>
+<p><em>如何使用Sockets：</em><br>    建立Socket：<br>        指定地址（主机名）<br>        指定端口<br>    数据传输：发送/接收<br>        send/sendto<br>        recv/recvfrom<br>    关闭Socket</p>
+<h2 id="7-应用层"><a href="#7-应用层" class="headerlink" title="7. 应用层"></a>7. 应用层</h2><p>会话层、表示层、应用层</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">应用层概述</span><br></pre></td></tr></table></figure>
+
+<p>应用层为模型外的用户服务，提供各式各样、丰富、变幻无穷的应用。<br>应用分为两大类：<br>    直接的网络应用<br>    间接的网络应用<br>主要的直接应用：<br>    电子邮件、远程登录、Web应用、文件传输等。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">域名系统DNS概述</span><br></pre></td></tr></table></figure>
+
+<p>因为IP地址难以记忆，且IP地址经常发生变动，便出现了域名。<br>DNS是一个层次化的分布式数据系统，提供域名解析服务。<br>域名解析的结果主要是资源记录。<br>任何域名均对应一条或多条资源记录。<br>资源记录包括权威资源记录。<br>资源记录均存储在域名服务器之中。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">DNS之域名解析</span><br></pre></td></tr></table></figure>
+
+<p>主机—<strong>本地域名服务器</strong>—<em>根域名服务器</em>—<strong>本地域名服务器</strong>—<em>顶级域名服务器</em>—<strong>本地域名服务器</strong>—<em>权限域名服务器</em>—<strong>本地域名服务器</strong>—本机</p>
+<p><strong>域名解析</strong>是将域名映射为IP地址的方法和过程。<br>一次完整的域名解析包括<strong>递归解析</strong>和<strong>迭代解析</strong>。<br>通过各级缓存优化查询，所获得的<strong>解析结果可能无效</strong>。<br>DNS运作存在<strong>不安全</strong>的因素。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">电子邮件e-mail</span><br></pre></td></tr></table></figure>
+
+<p>电子邮件系统主要包括MTA和UA两部分：<br>    UA主要负责读写邮件。<br>    MTA主要负责收发邮件。</p>
+<p>邮件传输协议：<br>    SMTP：简单邮件传输协议，ASCII编码，port：25<br>非纯文本邮件：MIME（多用途互联网邮件扩展）</p>
+<p>最后投递：<br>    使用IMAP（早期为POP3）</p>
+<p>发送发–<strong>通过SMTP</strong>–<em>发送方代理服务器</em>–<strong>通过SMTP</strong>–<em>接收方代理服务器</em>–<strong>通过POP3/IMAP</strong>–接收方</p>
+<p>Webmail：发送发–HTTP–网易邮件服务器–SMTP–新浪邮件服务器–HTTP–接收方</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">万维网 www</span><br></pre></td></tr></table></figure>
+
+<p>WWW包括<br>     资源、统一资源定位符、通信协议HTTP</p>
+<p>统一资源定位符url<br>    协议、服务器域名或IP地址、资源文件</p>
+<p><strong>浏览器检查url–DNS服务器–浏览器–（建立TCP连接）–web服务器–浏览器解析显示</strong></p>
+<p>浏览器扩展：<br>    插件<br>    外挂助手程序</p>
+<p>服务器端优化：<br>    TCP移交缓解了服务器前段的压力<br>    代理服务器：万维网高速缓存</p>
+<p>个性化服务：<br>    Cookie</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">其它应用</span><br></pre></td></tr></table></figure>
+
+<p>文件传输：FTP（有连接可靠的）、TFTP（无连接不可靠的）<br>    上传、下载</p>
+<p><strong>FTP</strong>使用了<strong>两根TCP连接</strong>，使用了一对姊妹端口号<br>    <strong>控制连接</strong>（21）<br>    <strong>数据连接</strong>（20）</p>
+<p>远程登录：TELNET工作在<strong>23端口</strong><br>    SSH工作在<strong>22端口</strong></p>
+<p>FTP和TELNET的传输层都采用了<strong>TCP</strong></p>
+<p><strong>多媒体应用</strong>：丰富多彩，实时的和非实时的两大类</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/07/16/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" data-id="cke28vee2001bk0ul0gtzgp35" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/07/16/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" data-id="cke5srp4k001nv8ul3sbc8lfr" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%B0%8F%E7%99%BD%E5%9F%BA%E7%A1%80/" rel="tag">小白基础</a></li></ul>
@@ -465,7 +504,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/JZ/" style="font-size: 16.67px;">JZ</a> <a href="/tags/java/" style="font-size: 20px;">java</a> <a href="/tags/job/" style="font-size: 13.33px;">job</a> <a href="/tags/%E5%B0%8F%E7%99%BD%E5%9F%BA%E7%A1%80/" style="font-size: 16.67px;">小白基础</a> <a href="/tags/%E9%9A%8F%E7%AC%94/" style="font-size: 10px;">随笔</a>
+      <a href="/tags/JZ/" style="font-size: 17.5px;">JZ</a> <a href="/tags/java/" style="font-size: 20px;">java</a> <a href="/tags/job/" style="font-size: 12.5px;">job</a> <a href="/tags/%E5%B0%8F%E7%99%BD%E5%9F%BA%E7%A1%80/" style="font-size: 15px;">小白基础</a> <a href="/tags/%E9%9A%8F%E7%AC%94/" style="font-size: 10px;">随笔</a>
     </div>
   </div>
 
@@ -487,6 +526,14 @@
       <ul>
         
           <li>
+            <a href="/2020/08/22/Java%E5%A4%9A%E7%BA%BF%E7%A8%8B/">Java多线程</a>
+          </li>
+        
+          <li>
+            <a href="/2020/08/22/%E5%89%91%E6%8C%87offer%E4%B9%A0%E9%A2%98%E5%8D%81%EF%BC%8846-50%EF%BC%89/">剑指offer习题十（46-50）</a>
+          </li>
+        
+          <li>
             <a href="/2020/08/15/SDK%E5%AE%89%E8%A3%85/">Android SDK安装</a>
           </li>
         
@@ -496,14 +543,6 @@
         
           <li>
             <a href="/2020/08/08/%E5%89%91%E6%8C%87offer%E4%B9%A0%E9%A2%98%E5%85%AB%EF%BC%8836-40%EF%BC%89/">剑指offer习题八（36-40）</a>
-          </li>
-        
-          <li>
-            <a href="/2020/08/05/%E5%89%91%E6%8C%87offer%E4%B9%A0%E9%A2%98%E4%B8%83%EF%BC%8831-35%EF%BC%89/">剑指offer习题七（31-35）</a>
-          </li>
-        
-          <li>
-            <a href="/2020/07/29/%E5%89%91%E6%8C%87offer%E4%B9%A0%E9%A2%98%E5%85%AD%EF%BC%8826-30%EF%BC%89/">剑指offer习题六（26-30）</a>
           </li>
         
       </ul>
